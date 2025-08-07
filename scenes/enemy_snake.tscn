@@ -1,0 +1,303 @@
+[gd_scene load_steps=37 format=3 uid="uid://cgwpeqh6ocmij"]
+
+[ext_resource type="Script" uid="uid://ddy8ypcglu873" path="res://scripts/enemy_snake.gd" id="1_8bq8f"]
+[ext_resource type="Texture2D" uid="uid://dcy6bsn8020rp" path="res://assets/character_art/Pantheon_Enemy_Snake.png" id="2_qmh0l"]
+[ext_resource type="Shader" uid="uid://cues6u5aeb1jr" path="res://assets/character_fx/hitflash.gdshader" id="2_xhlo2"]
+[ext_resource type="PackedScene" uid="uid://b7dsjvske0oja" path="res://scenes/HealthBar.tscn" id="3_qmh0l"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_2pab6"]
+resource_local_to_scene = true
+shader = ExtResource("2_xhlo2")
+shader_parameter/flash_color = Color(1, 1, 1, 1)
+shader_parameter/flash_value = 0.0
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qmh0l"]
+atlas = ExtResource("2_qmh0l")
+region = Rect2(0, 64, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xhlo2"]
+atlas = ExtResource("2_qmh0l")
+region = Rect2(32, 64, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2pab6"]
+atlas = ExtResource("2_qmh0l")
+region = Rect2(64, 64, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_a35dn"]
+atlas = ExtResource("2_qmh0l")
+region = Rect2(96, 64, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_nqnoh"]
+atlas = ExtResource("2_qmh0l")
+region = Rect2(128, 64, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_nexp4"]
+atlas = ExtResource("2_qmh0l")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xm45e"]
+atlas = ExtResource("2_qmh0l")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_otavq"]
+atlas = ExtResource("2_qmh0l")
+region = Rect2(64, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_o8axu"]
+atlas = ExtResource("2_qmh0l")
+region = Rect2(96, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_iph0d"]
+atlas = ExtResource("2_qmh0l")
+region = Rect2(128, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_otxvo"]
+atlas = ExtResource("2_qmh0l")
+region = Rect2(160, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1x66d"]
+atlas = ExtResource("2_qmh0l")
+region = Rect2(192, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bse58"]
+atlas = ExtResource("2_qmh0l")
+region = Rect2(224, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bpt5p"]
+atlas = ExtResource("2_qmh0l")
+region = Rect2(256, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_q2x7b"]
+atlas = ExtResource("2_qmh0l")
+region = Rect2(288, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gyi23"]
+atlas = ExtResource("2_qmh0l")
+region = Rect2(320, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rm5yq"]
+atlas = ExtResource("2_qmh0l")
+region = Rect2(352, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gd4l3"]
+atlas = ExtResource("2_qmh0l")
+region = Rect2(0, 32, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_kin2n"]
+atlas = ExtResource("2_qmh0l")
+region = Rect2(32, 32, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1bxr6"]
+atlas = ExtResource("2_qmh0l")
+region = Rect2(64, 32, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_a1m3s"]
+atlas = ExtResource("2_qmh0l")
+region = Rect2(96, 32, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_nfien"]
+atlas = ExtResource("2_qmh0l")
+region = Rect2(128, 32, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_bpt5p"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qmh0l")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xhlo2")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2pab6")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_a35dn")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_nqnoh")
+}],
+"loop": false,
+"name": &"die",
+"speed": 4.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_nexp4")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xm45e")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_otavq")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_o8axu")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_iph0d")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_otxvo")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1x66d")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_bse58")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_bpt5p")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_q2x7b")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_gyi23")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_rm5yq")
+}],
+"loop": true,
+"name": &"slither",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_gd4l3")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_kin2n")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1bxr6")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_a1m3s")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_nfien")
+}],
+"loop": true,
+"name": &"strike",
+"speed": 5.0
+}]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_8bq8f"]
+radius = 2.0
+height = 13.0
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_qmh0l"]
+radius = 3.0
+height = 16.0
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_xhlo2"]
+radius = 3.0
+height = 8.0
+
+[sub_resource type="Animation" id="Animation_nqnoh"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AnimatedSprite2D:material:shader_parameter/flash_value")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+
+[sub_resource type="Animation" id="Animation_a35dn"]
+resource_name = "flash"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AnimatedSprite2D:material:shader_parameter/flash_value")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.3),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [0.0, 1.0, 0.0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_nexp4"]
+_data = {
+&"RESET": SubResource("Animation_nqnoh"),
+&"flash": SubResource("Animation_a35dn")
+}
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_xhlo2"]
+resource_local_to_scene = true
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_2pab6"]
+resource_local_to_scene = true
+bg_color = Color(0.496093, 0.0157774, 0.0311501, 1)
+
+[node name="Node" type="Node2D"]
+
+[node name="EnemySnake" type="CharacterBody2D" parent="." groups=["enemies"]]
+z_index = 1
+motion_mode = 1
+script = ExtResource("1_8bq8f")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="EnemySnake"]
+material = SubResource("ShaderMaterial_2pab6")
+sprite_frames = SubResource("SpriteFrames_bpt5p")
+animation = &"die"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="EnemySnake"]
+position = Vector2(0, -1)
+shape = SubResource("CapsuleShape2D_8bq8f")
+debug_color = Color(1, 1, 1, 0.42)
+
+[node name="Hitbox" type="Area2D" parent="EnemySnake" groups=["enemies"]]
+position = Vector2(0, 4)
+input_pickable = false
+priority = 2
+
+[node name="HitboxArea" type="CollisionShape2D" parent="EnemySnake/Hitbox"]
+position = Vector2(0, -5)
+shape = SubResource("CapsuleShape2D_qmh0l")
+debug_color = Color(0.054902, 0.384314, 0.262745, 0.419608)
+
+[node name="Hurtbox" type="Area2D" parent="EnemySnake"]
+monitorable = false
+priority = 1
+
+[node name="HurtboxArea" type="CollisionShape2D" parent="EnemySnake/Hurtbox"]
+position = Vector2(0, 4)
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_xhlo2")
+debug_color = Color(0.771239, 0.0593387, 0.203927, 0.42)
+
+[node name="FlashAnimation" type="AnimationPlayer" parent="EnemySnake"]
+libraries = {
+&"": SubResource("AnimationLibrary_nexp4")
+}
+
+[node name="HealthBar" parent="." instance=ExtResource("3_qmh0l")]
+offset_left = -12.0
+offset_top = -16.0
+offset_right = 12.0
+offset_bottom = -14.0
+theme_override_styles/background = SubResource("StyleBoxEmpty_xhlo2")
+theme_override_styles/fill = SubResource("StyleBoxFlat_2pab6")
+
+[node name="HurtboxCDTimer" type="Timer" parent="."]
+process_callback = 0
+wait_time = 1.25
+one_shot = true
+
+[node name="ChangeDirectionTimer" type="Timer" parent="."]
+autostart = true
+
+[connection signal="enemy_died" from="EnemySnake" to="EnemySnake" method="_on_enemy_died"]
+[connection signal="animation_finished" from="EnemySnake/AnimatedSprite2D" to="EnemySnake" method="_on_animation_finished" binds= [&"die"]]
+[connection signal="area_entered" from="EnemySnake/Hurtbox" to="EnemySnake" method="_on_hurtbox_area_entered"]
+[connection signal="timeout" from="HurtboxCDTimer" to="EnemySnake" method="_on_hurtbox_cd_timer_timeout"]
+[connection signal="timeout" from="ChangeDirectionTimer" to="EnemySnake" method="_on_change_direction_timer_timeout"]

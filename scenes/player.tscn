@@ -1,0 +1,315 @@
+[gd_scene load_steps=31 format=3 uid="uid://da5qaqmpvsa64"]
+
+[ext_resource type="Script" uid="uid://dgaf7w4cfqo07" path="res://scenes/active_manager.gd" id="1_g2els"]
+[ext_resource type="Script" uid="uid://ebeqiscyvjll" path="res://scripts/soldier.gd" id="2_dqkch"]
+[ext_resource type="Texture2D" uid="uid://kige4sdyb1ww" path="res://assets/character_art/pantheon_soldier.png" id="2_qhqgy"]
+[ext_resource type="Shader" uid="uid://cues6u5aeb1jr" path="res://assets/character_fx/hitflash.gdshader" id="3_tuyoq"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_fjrip"]
+shader = ExtResource("3_tuyoq")
+shader_parameter/flash_color = Color(1, 1, 1, 1)
+shader_parameter/flash_value = 0.0
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_g2els"]
+atlas = ExtResource("2_qhqgy")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qhqgy"]
+atlas = ExtResource("2_qhqgy")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_dqkch"]
+atlas = ExtResource("2_qhqgy")
+region = Rect2(64, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qlg0r"]
+atlas = ExtResource("2_qhqgy")
+region = Rect2(96, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_tuyoq"]
+atlas = ExtResource("2_qhqgy")
+region = Rect2(128, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fjrip"]
+atlas = ExtResource("2_qhqgy")
+region = Rect2(0, 64, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_smehm"]
+atlas = ExtResource("2_qhqgy")
+region = Rect2(32, 64, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ur7pv"]
+atlas = ExtResource("2_qhqgy")
+region = Rect2(64, 64, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_y4r1p"]
+atlas = ExtResource("2_qhqgy")
+region = Rect2(96, 64, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_d2wvv"]
+atlas = ExtResource("2_qhqgy")
+region = Rect2(0, 32, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3v2ag"]
+atlas = ExtResource("2_qhqgy")
+region = Rect2(32, 32, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jej6c"]
+atlas = ExtResource("2_qhqgy")
+region = Rect2(64, 32, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_f1ej7"]
+atlas = ExtResource("2_qhqgy")
+region = Rect2(96, 32, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_oprun"]
+atlas = ExtResource("2_qhqgy")
+region = Rect2(128, 32, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_a8ls1"]
+atlas = ExtResource("2_qhqgy")
+region = Rect2(160, 32, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qfm1y"]
+atlas = ExtResource("2_qhqgy")
+region = Rect2(192, 32, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_fulsm"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_g2els")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qhqgy")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_dqkch")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qlg0r")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_tuyoq")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fjrip")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_smehm")
+}, {
+"duration": 1.5,
+"texture": SubResource("AtlasTexture_ur7pv")
+}, {
+"duration": 0.8,
+"texture": SubResource("AtlasTexture_y4r1p")
+}],
+"loop": true,
+"name": &"spear_thrust",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_d2wvv")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3v2ag")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jej6c")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_f1ej7")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_oprun")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_a8ls1")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qfm1y")
+}],
+"loop": true,
+"name": &"walk",
+"speed": 8.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_qlg0r"]
+size = Vector2(6.75, 11.5)
+
+[sub_resource type="Animation" id="Animation_tuyoq"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AnimatedSprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [3]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("AnimatedSprite2D/SpearHit/CollisionShape2D:disabled")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/2/type = "method"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("AnimatedSprite2D")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [&"spear_thrust", 1.0, false],
+"method": &"play"
+}]
+}
+
+[sub_resource type="Animation" id="Animation_qlg0r"]
+resource_name = "spear_strike"
+length = 0.75
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AnimatedSprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.15, 0.3, 0.6),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("AnimatedSprite2D/SpearHit/CollisionShape2D:disabled")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.3, 0.6),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [true, false, true]
+}
+tracks/2/type = "method"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("AnimatedSprite2D")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [&"spear_thrust"],
+"method": &"play"
+}]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_tuyoq"]
+_data = {
+&"RESET": SubResource("Animation_tuyoq"),
+&"spear_strike": SubResource("Animation_qlg0r")
+}
+
+[sub_resource type="Animation" id="Animation_ur7pv"]
+resource_name = "flash"
+length = 0.3
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AnimatedSprite2D:material:shader_parameter/flash_value")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.3),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [0.0, 1.0, 0.0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_y4r1p"]
+_data = {
+&"flash": SubResource("Animation_ur7pv")
+}
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_3vyb7"]
+radius = 5.0
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_qlg0r"]
+radius = 6.0
+height = 16.0
+
+[node name="player" type="Node2D"]
+
+[node name="active_manager" type="Node" parent="."]
+script = ExtResource("1_g2els")
+
+[node name="soldier" type="CharacterBody2D" parent="active_manager"]
+motion_mode = 1
+script = ExtResource("2_dqkch")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="active_manager/soldier"]
+material = SubResource("ShaderMaterial_fjrip")
+sprite_frames = SubResource("SpriteFrames_fulsm")
+animation = &"spear_thrust"
+autoplay = "idle"
+frame = 3
+
+[node name="SpearHit" type="Area2D" parent="active_manager/soldier/AnimatedSprite2D"]
+position = Vector2(0, -13)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="active_manager/soldier/AnimatedSprite2D/SpearHit"]
+position = Vector2(8, -1)
+shape = SubResource("RectangleShape2D_qlg0r")
+disabled = true
+debug_color = Color(0.819608, 0, 0.0666667, 0.466667)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="active_manager/soldier"]
+libraries = {
+&"": SubResource("AnimationLibrary_tuyoq")
+}
+
+[node name="FlashAnimation" type="AnimationPlayer" parent="active_manager/soldier"]
+libraries = {
+&"": SubResource("AnimationLibrary_y4r1p")
+}
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="active_manager/soldier"]
+shape = SubResource("CircleShape2D_3vyb7")
+debug_color = Color(1, 1, 1, 0.42)
+
+[node name="Hitbox" type="Area2D" parent="active_manager/soldier" groups=["player_hitbox"]]
+priority = 1
+
+[node name="HitboxArea" type="CollisionShape2D" parent="active_manager/soldier/Hitbox"]
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_qlg0r")
+debug_color = Color(0.0535837, 0.386135, 0.262589, 0.42)
+
+[node name="Camera2D" type="Camera2D" parent="."]
+zoom = Vector2(4, 4)
+position_smoothing_speed = 10.0
+
+[connection signal="ready" from="active_manager" to="active_manager" method="_on_ready"]
+[connection signal="area_entered" from="active_manager/soldier/AnimatedSprite2D/SpearHit" to="active_manager/soldier" method="_on_spear_hit_area_entered"]
