@@ -142,7 +142,7 @@ grow_horizontal = 2
 grow_vertical = 2
 scale = Vector2(3.38093, 2.96504)
 theme_override_fonts/font = ExtResource("5_qfnet")
-text = "Score: "
+text = "Score: 0"
 metadata/_edit_use_anchors_ = true
 
 [node name="SnakeSpawner" parent="." instance=ExtResource("8_4mrxx")]

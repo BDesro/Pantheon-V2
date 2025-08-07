@@ -34,7 +34,5 @@ func increase_player_score(amount: int):
 	if global_player_instance:
 		player_score += amount
 		elim_progress += amount
-		print("New Score = ", player_score)
-		print("Elim Progress = ", elim_progress)
 		
 		score_label.text = "Score: " + str(player_score)
