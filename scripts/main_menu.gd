@@ -3,6 +3,7 @@ extends Node2D
 
 func _ready() -> void:
 	$CenterContainer/SettingsMenu/SettingsScrollList/SettingsVBox/Fullscreen.button_pressed = true if DisplayServer.window_get_mode() == DisplayServer.WINDOW_MODE_EXCLUSIVE_FULLSCREEN else false
+	# Make sure to change game window settings to exclusive fullscreen when ready
 	
 	$CenterContainer/SettingsMenu/SettingsScrollList/SettingsVBox/MainVolSlider.value = db_to_linear(AudioServer.get_bus_volume_db(AudioServer.get_bus_index("Master")))
 	$CenterContainer/SettingsMenu/SettingsScrollList/SettingsVBox/MusicVolSlider.value = db_to_linear(AudioServer.get_bus_volume_db(AudioServer.get_bus_index("MUSIC")))

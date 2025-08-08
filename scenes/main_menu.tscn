@@ -133,7 +133,6 @@ alignment = 1
 [node name="Fullscreen" type="CheckBox" parent="CenterContainer/SettingsMenu/SettingsScrollList/SettingsVBox"]
 layout_mode = 2
 theme_override_font_sizes/font_size = 75
-button_pressed = true
 text = "FULLSCREEN"
 alignment = 1
 
