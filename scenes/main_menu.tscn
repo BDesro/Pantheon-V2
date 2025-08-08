@@ -1,131 +1,108 @@
-[gd_scene load_steps=3 format=3 uid="uid://bdmu5xc41yqp0"]
+[gd_scene load_steps=6 format=3 uid="uid://bdmu5xc41yqp0"]
 
 [ext_resource type="Script" uid="uid://c67ecdpv6uv71" path="res://scripts/main_menu.gd" id="1_l6cm7"]
+[ext_resource type="FontFile" uid="uid://obg2py2apxig" path="res://assets/fonts/Orange Kid.otf" id="2_ekxnf"]
 
 [sub_resource type="Theme" id="Theme_vue75"]
+default_font = ExtResource("2_ekxnf")
+Button/fonts/font = ExtResource("2_ekxnf")
+Label/fonts/font = ExtResource("2_ekxnf")
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_bqqt6"]
+bg_color = Color(0, 0, 0, 1)
+border_width_left = 10
+border_width_top = 10
+border_width_right = 10
+border_width_bottom = 10
+border_blend = true
+corner_radius_top_left = 30
+corner_radius_top_right = 30
+corner_radius_bottom_right = 30
+corner_radius_bottom_left = 30
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ekxnf"]
+content_margin_left = 30.0
+content_margin_top = 30.0
+content_margin_right = 30.0
+content_margin_bottom = 30.0
+bg_color = Color(0, 0, 0, 1)
+border_width_left = 10
+border_width_top = 20
+border_width_right = 10
+border_width_bottom = 10
+border_blend = true
+corner_radius_top_left = 30
+corner_radius_top_right = 30
+corner_radius_bottom_right = 30
+corner_radius_bottom_left = 30
+expand_margin_top = 20.0
 
 [node name="MainMenu" type="Node2D"]
 script = ExtResource("1_l6cm7")
 
 [node name="Title" type="Label" parent="."]
 offset_right = 1920.0
-offset_bottom = 500.0
+offset_bottom = 400.0
 theme_override_colors/font_color = Color(1, 1, 1, 1)
 theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
 theme_override_constants/shadow_offset_x = 5
 theme_override_constants/shadow_offset_y = 5
 theme_override_constants/outline_size = 3
 theme_override_constants/shadow_outline_size = 5
-theme_override_font_sizes/font_size = 200
+theme_override_fonts/font = ExtResource("2_ekxnf")
+theme_override_font_sizes/font_size = 300
 text = "Pantheon"
 horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="CenterContainer" type="CenterContainer" parent="."]
-offset_top = 500.0
+offset_top = 450.0
 offset_right = 1920.0
-offset_bottom = 1080.0
+offset_bottom = 1030.0
 theme = SubResource("Theme_vue75")
 
 [node name="MainButtons" type="VBoxContainer" parent="CenterContainer"]
+visible = false
+custom_minimum_size = Vector2(353, 0)
 layout_mode = 2
 theme_override_constants/separation = 16
 
 [node name="Play" type="Button" parent="CenterContainer/MainButtons"]
+custom_minimum_size = Vector2(0, 110)
 layout_mode = 2
 theme_override_font_sizes/font_size = 75
 text = "PLAY"
 
 [node name="Settings" type="Button" parent="CenterContainer/MainButtons"]
+custom_minimum_size = Vector2(0, 110)
 layout_mode = 2
 theme_override_font_sizes/font_size = 75
 text = "SETTINGS"
 
 [node name="Credits" type="Button" parent="CenterContainer/MainButtons"]
+custom_minimum_size = Vector2(0, 110)
 layout_mode = 2
 theme_override_font_sizes/font_size = 75
 text = "CREDITS"
 
 [node name="Quit" type="Button" parent="CenterContainer/MainButtons"]
+custom_minimum_size = Vector2(0, 110)
 layout_mode = 2
 theme_override_font_sizes/font_size = 75
 text = "QUIT"
 
-[node name="SettingsMenu" type="VBoxContainer" parent="CenterContainer"]
-visible = false
-layout_mode = 2
-theme_override_constants/separation = 16
-
-[node name="Back" type="Button" parent="CenterContainer/SettingsMenu"]
-custom_minimum_size = Vector2(353, 0)
-layout_mode = 2
-size_flags_horizontal = 4
-theme_override_font_sizes/font_size = 75
-text = "BACK"
-
-[node name="Fullscreen" type="CheckBox" parent="CenterContainer/SettingsMenu"]
-layout_mode = 2
-theme_override_font_sizes/font_size = 75
-text = "FULLSCREEN"
-
-[node name="MainVolSlider" type="HSlider" parent="CenterContainer/SettingsMenu"]
-custom_minimum_size = Vector2(0, 80)
-layout_mode = 2
-max_value = 1.0
-step = 0.001
-
-[node name="Label" type="Label" parent="CenterContainer/SettingsMenu/MainVolSlider"]
-custom_minimum_size = Vector2(484, 55)
-layout_mode = 0
-offset_top = -16.0
-offset_right = 484.0
-offset_bottom = 39.0
-theme_override_font_sizes/font_size = 40
-text = "MAIN VOLUME"
-horizontal_alignment = 1
-
-[node name="MusicVolSlider" type="HSlider" parent="CenterContainer/SettingsMenu"]
-custom_minimum_size = Vector2(0, 80)
-layout_mode = 2
-max_value = 1.0
-step = 0.001
-
-[node name="Label" type="Label" parent="CenterContainer/SettingsMenu/MusicVolSlider"]
-custom_minimum_size = Vector2(484, 55)
-layout_mode = 0
-offset_top = -16.0
-offset_right = 484.0
-offset_bottom = 39.0
-theme_override_font_sizes/font_size = 40
-text = "MUSIC VOLUME"
-horizontal_alignment = 1
-
-[node name="SFXVolSlider" type="HSlider" parent="CenterContainer/SettingsMenu"]
-custom_minimum_size = Vector2(0, 80)
-layout_mode = 2
-max_value = 1.0
-step = 0.001
-
-[node name="Label" type="Label" parent="CenterContainer/SettingsMenu/SFXVolSlider"]
-custom_minimum_size = Vector2(484, 55)
-layout_mode = 0
-offset_top = -16.0
-offset_right = 484.0
-offset_bottom = 39.0
-theme_override_font_sizes/font_size = 40
-text = "SFX VOLUME"
-horizontal_alignment = 1
-
 [node name="CreditsMenu" type="VBoxContainer" parent="CenterContainer"]
 visible = false
 layout_mode = 2
-theme_override_constants/separation = 16
+theme_override_constants/separation = 64
 
 [node name="Label" type="Label" parent="CenterContainer/CreditsMenu"]
 custom_minimum_size = Vector2(1000, 0)
 layout_mode = 2
 theme_override_font_sizes/font_size = 120
-text = "A Game By Beau Desrosiers"
+theme_override_styles/normal = SubResource("StyleBoxFlat_bqqt6")
+text = "A Game By: 
+Beau Desrosiers"
 horizontal_alignment = 1
 autowrap_mode = 2
 
@@ -134,6 +111,146 @@ custom_minimum_size = Vector2(353, 0)
 layout_mode = 2
 size_flags_horizontal = 4
 theme_override_font_sizes/font_size = 75
+text = "BACK"
+
+[node name="SettingsMenu" type="VBoxContainer" parent="CenterContainer"]
+layout_mode = 2
+theme_override_constants/separation = 16
+
+[node name="SettingsScrollList" type="ScrollContainer" parent="CenterContainer/SettingsMenu"]
+custom_minimum_size = Vector2(353, 500)
+layout_mode = 2
+horizontal_scroll_mode = 0
+
+[node name="SettingsVBox" type="VBoxContainer" parent="CenterContainer/SettingsMenu/SettingsScrollList"]
+custom_minimum_size = Vector2(353, 0)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_constants/separation = 16
+alignment = 1
+
+[node name="Fullscreen" type="CheckBox" parent="CenterContainer/SettingsMenu/SettingsScrollList/SettingsVBox"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 75
+button_pressed = true
+text = "FULLSCREEN"
+alignment = 1
+
+[node name="MainVolSlider" type="HSlider" parent="CenterContainer/SettingsMenu/SettingsScrollList/SettingsVBox"]
+custom_minimum_size = Vector2(0, 80)
+layout_mode = 2
+max_value = 1.0
+step = 0.001
+scrollable = false
+
+[node name="Label" type="Label" parent="CenterContainer/SettingsMenu/SettingsScrollList/SettingsVBox/MainVolSlider"]
+custom_minimum_size = Vector2(353, 55)
+layout_mode = 0
+offset_left = 36.0
+offset_top = -16.0
+offset_right = 389.0
+offset_bottom = 39.0
+theme_override_font_sizes/font_size = 40
+text = "MAIN VOLUME"
+horizontal_alignment = 1
+
+[node name="MusicVolSlider" type="HSlider" parent="CenterContainer/SettingsMenu/SettingsScrollList/SettingsVBox"]
+custom_minimum_size = Vector2(0, 80)
+layout_mode = 2
+max_value = 1.0
+step = 0.001
+scrollable = false
+
+[node name="Label" type="Label" parent="CenterContainer/SettingsMenu/SettingsScrollList/SettingsVBox/MusicVolSlider"]
+custom_minimum_size = Vector2(353, 55)
+layout_mode = 0
+offset_left = 36.0
+offset_top = -16.0
+offset_right = 389.0
+offset_bottom = 39.0
+theme_override_font_sizes/font_size = 40
+text = "MUSIC VOLUME"
+horizontal_alignment = 1
+
+[node name="SFXVolSlider" type="HSlider" parent="CenterContainer/SettingsMenu/SettingsScrollList/SettingsVBox"]
+custom_minimum_size = Vector2(0, 80)
+layout_mode = 2
+max_value = 1.0
+step = 0.001
+scrollable = false
+
+[node name="Label" type="Label" parent="CenterContainer/SettingsMenu/SettingsScrollList/SettingsVBox/SFXVolSlider"]
+custom_minimum_size = Vector2(353, 55)
+layout_mode = 0
+offset_left = 36.0
+offset_top = -16.0
+offset_right = 389.0
+offset_bottom = 39.0
+theme_override_font_sizes/font_size = 40
+text = "SFX VOLUME"
+horizontal_alignment = 1
+
+[node name="Licenses" type="Button" parent="CenterContainer/SettingsMenu/SettingsScrollList/SettingsVBox"]
+custom_minimum_size = Vector2(353, 0)
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_font_sizes/font_size = 50
+text = "THIRD-PARTY LICENSES"
+
+[node name="Back" type="Button" parent="CenterContainer/SettingsMenu"]
+custom_minimum_size = Vector2(353, 0)
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_font_sizes/font_size = 50
+text = "BACK"
+
+[node name="LicensePage" type="VBoxContainer" parent="CenterContainer"]
+visible = false
+clip_contents = true
+custom_minimum_size = Vector2(1412, 0)
+layout_mode = 2
+alignment = 1
+
+[node name="LicenseText" type="RichTextLabel" parent="CenterContainer/LicensePage"]
+custom_minimum_size = Vector2(1412, 500)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_fonts/bold_font = ExtResource("2_ekxnf")
+theme_override_font_sizes/normal_font_size = 25
+theme_override_font_sizes/bold_font_size = 40
+theme_override_styles/normal = SubResource("StyleBoxFlat_ekxnf")
+bbcode_enabled = true
+text = "This game uses Godot Engine, available under the following license:
+
+Copyright (c) 2014-present Godot Engine contributors.
+Copyright (c) 2007-2014 Juan Linietsky, Ariel Manzur.
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the \"Software\"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED \"AS IS\", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE."
+autowrap_mode = 2
+
+[node name="Back" type="Button" parent="CenterContainer/LicensePage"]
+custom_minimum_size = Vector2(353, 0)
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_font_sizes/font_size = 50
 text = "BACK"
 
 [node name="ColorRect" type="ColorRect" parent="."]
@@ -149,9 +266,11 @@ color = Color(0.721569, 0.584314, 0, 1)
 [connection signal="pressed" from="CenterContainer/MainButtons/Settings" to="." method="_on_settings_pressed"]
 [connection signal="pressed" from="CenterContainer/MainButtons/Credits" to="." method="_on_credits_pressed"]
 [connection signal="pressed" from="CenterContainer/MainButtons/Quit" to="." method="_on_quit_pressed"]
-[connection signal="pressed" from="CenterContainer/SettingsMenu/Back" to="." method="_on_back_pressed"]
-[connection signal="toggled" from="CenterContainer/SettingsMenu/Fullscreen" to="." method="_on_fullscreen_toggled"]
-[connection signal="value_changed" from="CenterContainer/SettingsMenu/MainVolSlider" to="." method="_on_main_vol_slider_value_changed"]
-[connection signal="value_changed" from="CenterContainer/SettingsMenu/MusicVolSlider" to="." method="_on_music_vol_slider_value_changed"]
-[connection signal="value_changed" from="CenterContainer/SettingsMenu/SFXVolSlider" to="." method="_on_sfx_vol_slider_value_changed"]
 [connection signal="pressed" from="CenterContainer/CreditsMenu/Back" to="." method="_on_back_pressed"]
+[connection signal="toggled" from="CenterContainer/SettingsMenu/SettingsScrollList/SettingsVBox/Fullscreen" to="." method="_on_fullscreen_toggled"]
+[connection signal="value_changed" from="CenterContainer/SettingsMenu/SettingsScrollList/SettingsVBox/MainVolSlider" to="." method="_on_main_vol_slider_value_changed"]
+[connection signal="value_changed" from="CenterContainer/SettingsMenu/SettingsScrollList/SettingsVBox/MusicVolSlider" to="." method="_on_music_vol_slider_value_changed"]
+[connection signal="value_changed" from="CenterContainer/SettingsMenu/SettingsScrollList/SettingsVBox/SFXVolSlider" to="." method="_on_sfx_vol_slider_value_changed"]
+[connection signal="pressed" from="CenterContainer/SettingsMenu/SettingsScrollList/SettingsVBox/Licenses" to="." method="_on_licenses_pressed"]
+[connection signal="pressed" from="CenterContainer/SettingsMenu/Back" to="." method="_on_back_pressed"]
+[connection signal="pressed" from="CenterContainer/LicensePage/Back" to="." method="_on_license_back_pressed"]
