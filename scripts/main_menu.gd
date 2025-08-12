@@ -11,6 +11,9 @@ func _ready() -> void:
 
 
 func _on_play_pressed() -> void:
+	# Ensures the game gets unpaused if a previous one was quit
+	if get_tree().paused == true:
+		get_tree().paused = false
 	get_tree().change_scene_to_file("res://scenes/world.tscn")
 
 

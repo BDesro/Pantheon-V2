@@ -49,6 +49,7 @@ corner_radius_bottom_left = 30
 expand_margin_top = 20.0
 
 [node name="MainMenu" type="Node2D"]
+process_mode = 3
 script = ExtResource("1_l6cm7")
 
 [node name="Title" type="Label" parent="."]

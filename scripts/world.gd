@@ -1,9 +1,12 @@
 extends Node2D
 
-@onready var score_label = $CanvasLayer/Control/ScoreLabel
+signal pause_pressed
+
+@onready var score_label = $GameUI/Control/ScoreLabel
 
 func _ready():
 	GlobalPlayerData.node_creation_parent = self
+	
 
 func _on_ready():
 	while score_label == null:
@@ -11,5 +14,14 @@ func _on_ready():
 	
 	GlobalPlayerData.score_label = score_label
 
+func _input(event: InputEvent) -> void:
+	if event.is_action_pressed("ui_cancel"):
+		$GameUI.hide()
+		pause_pressed.emit()
+
 func _exit_tree():
 	GlobalPlayerData.node_creation_parent = null
+
+
+func _on_pause_menu_resumed() -> void:
+	$GameUI.show()
