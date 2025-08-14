@@ -2,13 +2,24 @@
 
 [ext_resource type="FontFile" uid="uid://obg2py2apxig" path="res://assets/fonts/Orange Kid.otf" id="1_n87rw"]
 
-[sub_resource type="Theme" id="Theme_myx47"]
+[sub_resource type="Theme" id="Theme_n87rw"]
 default_font = ExtResource("1_n87rw")
 
 [node name="PauseMenu" type="CanvasLayer"]
 process_mode = 2
+visible = false
+
+[node name="ColorRect" type="ColorRect" parent="."]
+z_index = -1
+offset_left = 640.0
+offset_top = 128.0
+offset_right = 1280.0
+offset_bottom = 952.0
+color = Color(0, 0, 0, 0.705882)
 
 [node name="Title" type="Label" parent="."]
+process_mode = 2
+z_index = 1
 offset_top = 104.0
 offset_right = 1920.0
 offset_bottom = 285.0
@@ -20,49 +31,47 @@ horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="CenterContainer" type="CenterContainer" parent="."]
+process_mode = 2
 offset_top = 384.0
 offset_right = 1920.0
 offset_bottom = 832.0
-theme = SubResource("Theme_myx47")
+mouse_filter = 0
+theme = SubResource("Theme_n87rw")
 
 [node name="MainOptions" type="VBoxContainer" parent="CenterContainer"]
+process_mode = 2
+z_index = 1
 custom_minimum_size = Vector2(353, 0)
 layout_mode = 2
 theme_override_constants/separation = 16
 
 [node name="Resume" type="Button" parent="CenterContainer/MainOptions"]
-process_mode = 2
+z_index = 2
 custom_minimum_size = Vector2(0, 110)
 layout_mode = 2
 size_flags_horizontal = 4
+tooltip_text = "Exit the Pause Menu"
 theme_override_font_sizes/font_size = 75
 text = "RESUME"
 
 [node name="QuitToMain" type="Button" parent="CenterContainer/MainOptions"]
-process_mode = 2
+z_index = 2
 custom_minimum_size = Vector2(0, 110)
 layout_mode = 2
 size_flags_horizontal = 4
+tooltip_text = "Exit and Return to Main Menu"
 theme_override_font_sizes/font_size = 75
 text = "QUIT TO MAIN MENU"
 
 [node name="ExitGame" type="Button" parent="CenterContainer/MainOptions"]
-process_mode = 2
+z_index = 2
 custom_minimum_size = Vector2(0, 110)
 layout_mode = 2
 size_flags_horizontal = 4
+tooltip_text = "Exit and Close the Game"
 theme_override_font_sizes/font_size = 75
 text = "EXIT GAME"
 
-[node name="ColorRect" type="ColorRect" parent="."]
-z_index = -4096
-offset_left = 640.0
-offset_top = 128.0
-offset_right = 1280.0
-offset_bottom = 952.0
-color = Color(0, 0, 0, 0.705882)
-
-[connection signal="visibility_changed" from="." to="." method="_on_visibility_changed"]
 [connection signal="pressed" from="CenterContainer/MainOptions/Resume" to="." method="_on_resume_pressed"]
 [connection signal="pressed" from="CenterContainer/MainOptions/QuitToMain" to="." method="_on_quit_to_main_pressed"]
 [connection signal="pressed" from="CenterContainer/MainOptions/ExitGame" to="." method="_on_exit_game_pressed"]
