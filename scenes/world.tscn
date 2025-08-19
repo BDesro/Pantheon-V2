@@ -65,12 +65,15 @@ tile_set = SubResource("TileSet_k0juu")
 visibility_layer = 2
 
 [node name="EnemySnake" parent="." instance=ExtResource("3_4wyf3")]
+z_index = 2
 position = Vector2(0, -81)
 
 [node name="Node" parent="." instance=ExtResource("3_4wyf3")]
+z_index = 2
 position = Vector2(64, -75)
 
 [node name="Node2" parent="." instance=ExtResource("3_4wyf3")]
+z_index = 2
 position = Vector2(-62, -77)
 
 [node name="GameUI" type="CanvasLayer" parent="."]

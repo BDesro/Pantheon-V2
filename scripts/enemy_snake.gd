@@ -3,7 +3,7 @@ extends CharacterBody2D
 signal enemy_died
 
 @onready var sprite = $AnimatedSprite2D
-@onready var health_bar = get_parent().get_node("HealthBar")
+@onready var health_bar = $"../HealthBar"
 @onready var collision_shape = $CollisionShape2D
 @onready var hitbox = $Hitbox
 @onready var hurtbox = $Hurtbox
@@ -24,6 +24,10 @@ var speed: float = 50
 var can_move: bool = true
 
 var player = null
+
+func _on_ready():
+	await health_bar.ready
+	health_bar.init_health(health)
 
 func _process(_delta):
 	player = GlobalPlayerData.global_player_instance
@@ -68,6 +72,7 @@ func _die():
 	collision_shape.set_deferred("disabled", true)# Disable environmental collision
 	hurtbox.set_deferred("monitoring", false) # Can no longer hurt the player
 	hitbox.set_deferred("monitorable", false) # Will no longer register hits by the player
+	health_bar.queue_free()
 	
 	sprite.play("die")
 	enemy_died.emit()
