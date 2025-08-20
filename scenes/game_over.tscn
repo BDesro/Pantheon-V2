@@ -1,7 +1,16 @@
-[gd_scene load_steps=6 format=3 uid="uid://c2ual51w4orrs"]
+[gd_scene load_steps=10 format=3 uid="uid://c2ual51w4orrs"]
 
 [ext_resource type="Script" uid="uid://dobb45e8vr7ll" path="res://scripts/game_over.gd" id="1_wqhvx"]
 [ext_resource type="FontFile" uid="uid://obg2py2apxig" path="res://assets/fonts/Orange Kid.otf" id="2_tbwuq"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_wqhvx"]
+bg_color = Color(0.226708, 0.226707, 0.226708, 1)
+corner_radius_top_left = 32
+corner_radius_top_right = 32
+corner_radius_bottom_right = 32
+corner_radius_bottom_left = 32
+shadow_color = Color(0.929412, 0.929412, 0.929412, 0.470588)
+shadow_size = 10
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_racf3"]
 bg_color = Color(0.184314, 0.184314, 0.184314, 1)
@@ -12,8 +21,10 @@ corner_radius_bottom_left = 32
 
 [sub_resource type="Theme" id="Theme_7m3ot"]
 default_font = ExtResource("2_tbwuq")
+Button/colors/font_hover_color = Color(0.856066, 0.856068, 0.856068, 1)
 Button/font_sizes/font_size = 60
 Button/fonts/font = ExtResource("2_tbwuq")
+Button/styles/hover = SubResource("StyleBoxFlat_wqhvx")
 Button/styles/normal = SubResource("StyleBoxFlat_racf3")
 Label/fonts/font = ExtResource("2_tbwuq")
 
@@ -32,10 +43,73 @@ corner_radius_bottom_left = 32
 shadow_color = Color(0.0639405, 0.00578359, 0.00578415, 1)
 shadow_size = 815
 
+[sub_resource type="Animation" id="Animation_tbwuq"]
+resource_name = "fade_in"
+length = 3.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Panel:modulate")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Panel/CenterContainer/VBoxContainer:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(2.25, 3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_racf3"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Panel:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Panel/CenterContainer/VBoxContainer:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_7m3ot"]
+_data = {
+&"RESET": SubResource("Animation_racf3"),
+&"fade_in": SubResource("Animation_tbwuq")
+}
+
 [node name="GameOver" type="CanvasLayer"]
+visible = false
 script = ExtResource("1_wqhvx")
 
 [node name="Panel" type="Panel" parent="."]
+modulate = Color(1, 1, 1, 0)
 anchors_preset = -1
 anchor_left = 0.166667
 anchor_top = 0.17037
@@ -72,6 +146,7 @@ offset_right = 1264.0
 offset_bottom = 680.0
 
 [node name="VBoxContainer" type="VBoxContainer" parent="Panel/CenterContainer"]
+modulate = Color(1, 1, 1, 0)
 custom_minimum_size = Vector2(353, 0)
 layout_mode = 2
 theme_override_constants/separation = 32
@@ -85,6 +160,11 @@ text = "PLAY AGAIN"
 custom_minimum_size = Vector2(0, 110)
 layout_mode = 2
 text = "MAIN MENU"
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_7m3ot")
+}
 
 [connection signal="pressed" from="Panel/CenterContainer/VBoxContainer/PlayAgain" to="." method="_on_play_again_pressed"]
 [connection signal="pressed" from="Panel/CenterContainer/VBoxContainer/MainMenu" to="." method="_on_main_menu_pressed"]

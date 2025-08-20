@@ -91,12 +91,14 @@ func _set_health(value: int):
 	health_bar.health = health # Gotta get this connected via autoload, not active_manager
 
 func take_damage(damage: int): # This needs to get replaced in the global info script (just testing for now)
+	active_character.flash_anim.play("flash")
 	var new_health = health - damage
 	_set_health(new_health)
-	active_character.flash_anim.play("flash")
+	
 
 func _die():
 	active_character.get_node("CollisionShape2D").set_deferred("disabled", true) # Disables collision on death
+	GlobalPlayerData.node_creation_parent.game_over()
 	queue_free()
 
 func _exit_tree() -> void:

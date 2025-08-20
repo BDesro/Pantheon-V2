@@ -1,6 +1,6 @@
 extends Node
 
-var node_creation_parent: Node2D = null
+var node_creation_parent: World = null
 var global_player_instance = null
 var unit_name_label: Label = null
 var player_health_bar: ProgressBar = null

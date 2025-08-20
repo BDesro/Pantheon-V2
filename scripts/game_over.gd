@@ -1,8 +1,13 @@
 extends CanvasLayer
 
+@onready var anim_player: AnimationPlayer = $AnimationPlayer
+
+func show_game_over():
+	visible = true
+	anim_player.play("fade_in")
 
 func _on_play_again_pressed() -> void:
-	pass # Replace with function body.
+	get_tree().reload_current_scene()
 
 
 func _on_main_menu_pressed() -> void:

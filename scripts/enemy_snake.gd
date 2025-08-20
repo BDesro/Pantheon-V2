@@ -63,9 +63,9 @@ func _set_health(value: int):
 	health_bar.health = health # Gotta get this connected via autoload, not active_manager
 
 func take_damage(damage: int): # This needs to get replaced in the global info script (just testing for now)
+	flash_anim.play("flash")
 	var new_health = health - damage
 	_set_health(new_health)
-	flash_anim.play("flash")
 
 func _die():
 	set_process(false)

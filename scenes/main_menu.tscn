@@ -1,14 +1,29 @@
-[gd_scene load_steps=9 format=3 uid="uid://bdmu5xc41yqp0"]
+[gd_scene load_steps=12 format=3 uid="uid://bdmu5xc41yqp0"]
 
 [ext_resource type="Script" uid="uid://c67ecdpv6uv71" path="res://scripts/main_menu.gd" id="1_l6cm7"]
 [ext_resource type="FontFile" uid="uid://obg2py2apxig" path="res://assets/fonts/Orange Kid.otf" id="2_ekxnf"]
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_oa1go"]
+bg_color = Color(0.223103, 0.223103, 0.223103, 1)
+corner_radius_top_left = 32
+corner_radius_top_right = 32
+corner_radius_bottom_right = 32
+corner_radius_bottom_left = 32
+shadow_color = Color(0.890196, 0.721569, 0, 0.843137)
+shadow_size = 10
+
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_wu84c"]
 bg_color = Color(0.133196, 0.133196, 0.133196, 1)
+corner_radius_top_left = 32
+corner_radius_top_right = 32
+corner_radius_bottom_right = 32
+corner_radius_bottom_left = 32
 
 [sub_resource type="Theme" id="Theme_vue75"]
 default_font = ExtResource("2_ekxnf")
+Button/colors/font_hover_color = Color(0.804741, 0.804743, 0.804743, 1)
 Button/fonts/font = ExtResource("2_ekxnf")
+Button/styles/hover = SubResource("StyleBoxFlat_oa1go")
 Button/styles/normal = SubResource("StyleBoxFlat_wu84c")
 Label/fonts/font = ExtResource("2_ekxnf")
 
@@ -23,6 +38,18 @@ corner_radius_top_left = 30
 corner_radius_top_right = 30
 corner_radius_bottom_right = 30
 corner_radius_bottom_left = 30
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_jk1qb"]
+bg_color = Color(0.34902, 0.34902, 0.34902, 0.627451)
+border_width_left = 5
+border_width_top = 5
+border_width_right = 5
+border_width_bottom = 5
+border_color = Color(0, 0, 0, 1)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_8ln24"]
 bg_color = Color(0.196078, 0.196078, 0.196078, 0.678431)
@@ -48,6 +75,19 @@ corner_radius_bottom_right = 30
 corner_radius_bottom_left = 30
 expand_margin_top = 20.0
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_tbmy8"]
+bg_color = Color(0.6, 0.6, 0.6, 0)
+border_width_left = 30
+border_width_top = 30
+border_width_right = 30
+border_width_bottom = 25
+border_color = Color(0.905882, 0.737255, 0, 0.658824)
+border_blend = true
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+
 [node name="MainMenu" type="Node2D"]
 process_mode = 3
 script = ExtResource("1_l6cm7")
@@ -56,7 +96,8 @@ script = ExtResource("1_l6cm7")
 offset_right = 1920.0
 offset_bottom = 400.0
 theme_override_colors/font_color = Color(1, 1, 1, 1)
-theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_colors/font_shadow_color = Color(0.855756, 0.694407, 0, 1)
+theme_override_colors/font_outline_color = Color(0.975818, 0.793199, 0, 1)
 theme_override_constants/shadow_offset_x = 5
 theme_override_constants/shadow_offset_y = 5
 theme_override_constants/outline_size = 3
@@ -81,24 +122,28 @@ theme_override_constants/separation = 16
 [node name="Play" type="Button" parent="CenterContainer/MainButtons"]
 custom_minimum_size = Vector2(0, 110)
 layout_mode = 2
+mouse_default_cursor_shape = 2
 theme_override_font_sizes/font_size = 75
 text = "PLAY"
 
 [node name="Settings" type="Button" parent="CenterContainer/MainButtons"]
 custom_minimum_size = Vector2(0, 110)
 layout_mode = 2
+mouse_default_cursor_shape = 2
 theme_override_font_sizes/font_size = 75
 text = "SETTINGS"
 
 [node name="Credits" type="Button" parent="CenterContainer/MainButtons"]
 custom_minimum_size = Vector2(0, 110)
 layout_mode = 2
+mouse_default_cursor_shape = 2
 theme_override_font_sizes/font_size = 75
 text = "CREDITS"
 
 [node name="Quit" type="Button" parent="CenterContainer/MainButtons"]
 custom_minimum_size = Vector2(0, 110)
 layout_mode = 2
+mouse_default_cursor_shape = 2
 theme_override_font_sizes/font_size = 75
 text = "QUIT"
 
@@ -121,6 +166,7 @@ autowrap_mode = 2
 custom_minimum_size = Vector2(353, 0)
 layout_mode = 2
 size_flags_horizontal = 4
+mouse_default_cursor_shape = 2
 theme_override_font_sizes/font_size = 75
 text = "BACK"
 
@@ -132,6 +178,7 @@ theme_override_constants/separation = 16
 [node name="SettingsScrollList" type="ScrollContainer" parent="CenterContainer/SettingsMenu"]
 custom_minimum_size = Vector2(353, 500)
 layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_jk1qb")
 horizontal_scroll_mode = 0
 
 [node name="SettingsVBox" type="VBoxContainer" parent="CenterContainer/SettingsMenu/SettingsScrollList"]
@@ -144,6 +191,7 @@ alignment = 1
 
 [node name="Fullscreen" type="CheckBox" parent="CenterContainer/SettingsMenu/SettingsScrollList/SettingsVBox"]
 layout_mode = 2
+size_flags_horizontal = 4
 theme_override_font_sizes/font_size = 75
 theme_override_styles/pressed = SubResource("StyleBoxFlat_8ln24")
 theme_override_styles/normal = SubResource("StyleBoxFlat_rtw2f")
@@ -154,20 +202,25 @@ alignment = 1
 [node name="MainVolSlider" type="HSlider" parent="CenterContainer/SettingsMenu/SettingsScrollList/SettingsVBox"]
 custom_minimum_size = Vector2(0, 80)
 layout_mode = 2
+size_flags_vertical = 4
 max_value = 1.0
 step = 0.001
 scrollable = false
+tick_count = 10
+ticks_on_borders = true
 
 [node name="Label" type="Label" parent="CenterContainer/SettingsMenu/SettingsScrollList/SettingsVBox/MainVolSlider"]
 custom_minimum_size = Vector2(353, 55)
 layout_mode = 0
-offset_left = 36.0
-offset_top = -16.0
-offset_right = 389.0
-offset_bottom = 39.0
+anchor_top = -0.2
+anchor_right = 1.0
+anchor_bottom = 0.4875
+offset_top = 4.0
+offset_bottom = 4.0
 theme_override_font_sizes/font_size = 40
 text = "MAIN VOLUME"
 horizontal_alignment = 1
+metadata/_edit_use_anchors_ = true
 
 [node name="MusicVolSlider" type="HSlider" parent="CenterContainer/SettingsMenu/SettingsScrollList/SettingsVBox"]
 custom_minimum_size = Vector2(0, 80)
@@ -175,14 +228,15 @@ layout_mode = 2
 max_value = 1.0
 step = 0.001
 scrollable = false
+tick_count = 10
+ticks_on_borders = true
 
 [node name="Label" type="Label" parent="CenterContainer/SettingsMenu/SettingsScrollList/SettingsVBox/MusicVolSlider"]
 custom_minimum_size = Vector2(353, 55)
 layout_mode = 0
-offset_left = 36.0
-offset_top = -16.0
-offset_right = 389.0
-offset_bottom = 39.0
+offset_top = -12.0
+offset_right = 353.0
+offset_bottom = 43.0
 theme_override_font_sizes/font_size = 40
 text = "MUSIC VOLUME"
 horizontal_alignment = 1
@@ -193,14 +247,15 @@ layout_mode = 2
 max_value = 1.0
 step = 0.001
 scrollable = false
+tick_count = 10
+ticks_on_borders = true
 
 [node name="Label" type="Label" parent="CenterContainer/SettingsMenu/SettingsScrollList/SettingsVBox/SFXVolSlider"]
 custom_minimum_size = Vector2(353, 55)
 layout_mode = 0
-offset_left = 36.0
-offset_top = -16.0
-offset_right = 389.0
-offset_bottom = 39.0
+offset_top = -12.0
+offset_right = 353.0
+offset_bottom = 43.0
 theme_override_font_sizes/font_size = 40
 text = "SFX VOLUME"
 horizontal_alignment = 1
@@ -209,21 +264,26 @@ horizontal_alignment = 1
 custom_minimum_size = Vector2(353, 0)
 layout_mode = 2
 size_flags_horizontal = 4
-theme_override_font_sizes/font_size = 50
+size_flags_vertical = 4
+mouse_default_cursor_shape = 2
+theme_override_font_sizes/font_size = 45
 text = "LICENSE INFO"
+icon_alignment = 1
 
 [node name="Back" type="Button" parent="CenterContainer/SettingsMenu"]
 custom_minimum_size = Vector2(353, 0)
 layout_mode = 2
 size_flags_horizontal = 4
+mouse_default_cursor_shape = 2
 theme_override_font_sizes/font_size = 50
 text = "BACK"
 
 [node name="LicensePage" type="VBoxContainer" parent="CenterContainer"]
 visible = false
 clip_contents = true
-custom_minimum_size = Vector2(1412, 0)
+custom_minimum_size = Vector2(1412, 600)
 layout_mode = 2
+theme_override_constants/separation = 12
 alignment = 1
 
 [node name="LicenseText" type="RichTextLabel" parent="CenterContainer/LicensePage"]
@@ -264,6 +324,8 @@ autowrap_mode = 2
 custom_minimum_size = Vector2(353, 0)
 layout_mode = 2
 size_flags_horizontal = 4
+size_flags_vertical = 6
+mouse_default_cursor_shape = 2
 theme_override_font_sizes/font_size = 50
 text = "BACK"
 
@@ -274,7 +336,14 @@ offset_top = -32.0
 offset_right = 1952.0
 offset_bottom = 1112.0
 mouse_filter = 2
-color = Color(0.535948, 0.431501, 9.62615e-08, 1)
+color = Color(0.313707, 0.24854, 9.62615e-08, 1)
+
+[node name="PanelContainer" type="PanelContainer" parent="."]
+z_index = -4096
+offset_right = 1920.0
+offset_bottom = 1080.0
+mouse_filter = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_tbmy8")
 
 [connection signal="pressed" from="CenterContainer/MainButtons/Play" to="." method="_on_play_pressed"]
 [connection signal="pressed" from="CenterContainer/MainButtons/Settings" to="." method="_on_settings_pressed"]

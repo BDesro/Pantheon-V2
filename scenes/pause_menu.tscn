@@ -1,13 +1,30 @@
-[gd_scene load_steps=3 format=3 uid="uid://djyri8nicqsrg"]
+[gd_scene load_steps=5 format=3 uid="uid://djyri8nicqsrg"]
 
 [ext_resource type="FontFile" uid="uid://obg2py2apxig" path="res://assets/fonts/Orange Kid.otf" id="1_n87rw"]
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_n87rw"]
+bg_color = Color(0.29219, 0.29219, 0.29219, 1)
+corner_radius_top_left = 32
+corner_radius_top_right = 32
+corner_radius_bottom_right = 32
+corner_radius_bottom_left = 32
+shadow_color = Color(0.890196, 0.721569, 0, 0.796078)
+shadow_size = 10
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_myx47"]
+bg_color = Color(0.152941, 0.152941, 0.152941, 1)
+corner_radius_top_left = 32
+corner_radius_top_right = 32
+corner_radius_bottom_right = 32
+corner_radius_bottom_left = 32
+
 [sub_resource type="Theme" id="Theme_n87rw"]
 default_font = ExtResource("1_n87rw")
+Button/styles/hover = SubResource("StyleBoxFlat_n87rw")
+Button/styles/normal = SubResource("StyleBoxFlat_myx47")
 
 [node name="PauseMenu" type="CanvasLayer"]
 process_mode = 2
-visible = false
 
 [node name="ColorRect" type="ColorRect" parent="."]
 z_index = -1
@@ -44,12 +61,12 @@ z_index = 1
 custom_minimum_size = Vector2(353, 0)
 layout_mode = 2
 theme_override_constants/separation = 16
+alignment = 1
 
 [node name="Resume" type="Button" parent="CenterContainer/MainOptions"]
 z_index = 2
 custom_minimum_size = Vector2(0, 110)
 layout_mode = 2
-size_flags_horizontal = 4
 tooltip_text = "Exit the Pause Menu"
 theme_override_font_sizes/font_size = 75
 text = "RESUME"
@@ -58,16 +75,14 @@ text = "RESUME"
 z_index = 2
 custom_minimum_size = Vector2(0, 110)
 layout_mode = 2
-size_flags_horizontal = 4
 tooltip_text = "Exit and Return to Main Menu"
 theme_override_font_sizes/font_size = 75
-text = "QUIT TO MAIN MENU"
+text = "MAIN MENU"
 
 [node name="ExitGame" type="Button" parent="CenterContainer/MainOptions"]
 z_index = 2
 custom_minimum_size = Vector2(0, 110)
 layout_mode = 2
-size_flags_horizontal = 4
 tooltip_text = "Exit and Close the Game"
 theme_override_font_sizes/font_size = 75
 text = "EXIT GAME"
