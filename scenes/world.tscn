@@ -63,6 +63,7 @@ tile_set = SubResource("TileSet_k0juu")
 
 [node name="player" parent="." instance=ExtResource("1_nnsk1")]
 visibility_layer = 2
+z_index = 4
 
 [node name="EnemySnake" parent="." instance=ExtResource("3_4wyf3")]
 z_index = 2
@@ -152,6 +153,7 @@ text = "Score: 0"
 metadata/_edit_use_anchors_ = true
 
 [node name="SnakeSpawner" parent="." instance=ExtResource("8_4mrxx")]
+z_index = 3
 position = Vector2(0, -128)
 
 [node name="PauseMenu" parent="." instance=ExtResource("9_w7kh3")]

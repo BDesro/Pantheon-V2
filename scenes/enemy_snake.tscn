@@ -241,7 +241,7 @@ bg_color = Color(0.496093, 0.0157774, 0.0311501, 1)
 [node name="Node" type="Node2D"]
 
 [node name="EnemySnake" type="CharacterBody2D" parent="." groups=["enemies"]]
-z_index = 2
+z_index = 1
 motion_mode = 1
 script = ExtResource("1_8bq8f")
 
@@ -281,6 +281,7 @@ libraries = {
 }
 
 [node name="HealthBar" parent="." instance=ExtResource("3_qmh0l")]
+z_index = 1
 offset_left = -12.0
 offset_top = -16.0
 offset_right = 12.0

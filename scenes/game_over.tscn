@@ -1,0 +1,90 @@
+[gd_scene load_steps=6 format=3 uid="uid://c2ual51w4orrs"]
+
+[ext_resource type="Script" uid="uid://dobb45e8vr7ll" path="res://scripts/game_over.gd" id="1_wqhvx"]
+[ext_resource type="FontFile" uid="uid://obg2py2apxig" path="res://assets/fonts/Orange Kid.otf" id="2_tbwuq"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_racf3"]
+bg_color = Color(0.184314, 0.184314, 0.184314, 1)
+corner_radius_top_left = 32
+corner_radius_top_right = 32
+corner_radius_bottom_right = 32
+corner_radius_bottom_left = 32
+
+[sub_resource type="Theme" id="Theme_7m3ot"]
+default_font = ExtResource("2_tbwuq")
+Button/font_sizes/font_size = 60
+Button/fonts/font = ExtResource("2_tbwuq")
+Button/styles/normal = SubResource("StyleBoxFlat_racf3")
+Label/fonts/font = ExtResource("2_tbwuq")
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_v3hpu"]
+bg_color = Color(0, 0, 0, 0.964706)
+border_width_left = 32
+border_width_top = 16
+border_width_right = 32
+border_width_bottom = 16
+border_color = Color(0.205333, 0.00466473, 0.00317974, 1)
+border_blend = true
+corner_radius_top_left = 32
+corner_radius_top_right = 32
+corner_radius_bottom_right = 32
+corner_radius_bottom_left = 32
+shadow_color = Color(0.0639405, 0.00578359, 0.00578415, 1)
+shadow_size = 815
+
+[node name="GameOver" type="CanvasLayer"]
+script = ExtResource("1_wqhvx")
+
+[node name="Panel" type="Panel" parent="."]
+anchors_preset = -1
+anchor_left = 0.166667
+anchor_top = 0.17037
+anchor_right = 0.833333
+anchor_bottom = 0.82963
+offset_bottom = 6.10352e-05
+theme = SubResource("Theme_7m3ot")
+theme_override_styles/panel = SubResource("StyleBoxFlat_v3hpu")
+
+[node name="Label" type="Label" parent="Panel"]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_top = 16.0
+offset_bottom = 36.0
+grow_horizontal = 2
+theme_override_colors/font_color = Color(0.614889, 0.0524758, 0.0527481, 1)
+theme_override_colors/font_shadow_color = Color(0.261997, 0.0117668, 0.0117922, 1)
+theme_override_colors/font_outline_color = Color(1, 1, 1, 1)
+theme_override_constants/shadow_offset_x = 0
+theme_override_constants/shadow_offset_y = 0
+theme_override_constants/outline_size = 2
+theme_override_constants/shadow_outline_size = 15
+theme_override_font_sizes/font_size = 150
+text = "GAME OVER"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="CenterContainer" type="CenterContainer" parent="Panel"]
+layout_mode = 0
+offset_left = 16.0
+offset_top = 256.0
+offset_right = 1264.0
+offset_bottom = 680.0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Panel/CenterContainer"]
+custom_minimum_size = Vector2(353, 0)
+layout_mode = 2
+theme_override_constants/separation = 32
+
+[node name="PlayAgain" type="Button" parent="Panel/CenterContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 110)
+layout_mode = 2
+text = "PLAY AGAIN"
+
+[node name="MainMenu" type="Button" parent="Panel/CenterContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 110)
+layout_mode = 2
+text = "MAIN MENU"
+
+[connection signal="pressed" from="Panel/CenterContainer/VBoxContainer/PlayAgain" to="." method="_on_play_again_pressed"]
+[connection signal="pressed" from="Panel/CenterContainer/VBoxContainer/MainMenu" to="." method="_on_main_menu_pressed"]
