@@ -164,3 +164,4 @@ script = ExtResource("9_7r4gi")
 [connection signal="pause_pressed" from="." to="PauseMenu" method="_on_pause_button_pressed"]
 [connection signal="ready" from="." to="." method="_on_ready"]
 [connection signal="ready" from="GameUI" to="GameUI" method="_on_ready"]
+[connection signal="resumed" from="PauseMenu" to="." method="_on_pause_menu_resumed"]

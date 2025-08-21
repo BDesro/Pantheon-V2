@@ -17,6 +17,7 @@ func _on_pause_button_pressed() -> void:
 
 func _on_resume_pressed() -> void:
 	hide()
+	resumed.emit()
 	get_tree().paused = false
 
 

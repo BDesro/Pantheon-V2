@@ -345,6 +345,18 @@ offset_bottom = 1080.0
 mouse_filter = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_tbmy8")
 
+[node name="Version" type="Label" parent="."]
+custom_minimum_size = Vector2(0, 32)
+offset_left = 44.0
+offset_top = 1004.0
+offset_right = 285.0
+offset_bottom = 1054.0
+size_flags_horizontal = 6
+theme_override_fonts/font = ExtResource("2_ekxnf")
+theme_override_font_sizes/font_size = 32
+text = "Current Version: v0.3.0"
+vertical_alignment = 1
+
 [connection signal="pressed" from="CenterContainer/MainButtons/Play" to="." method="_on_play_pressed"]
 [connection signal="pressed" from="CenterContainer/MainButtons/Settings" to="." method="_on_settings_pressed"]
 [connection signal="pressed" from="CenterContainer/MainButtons/Credits" to="." method="_on_credits_pressed"]

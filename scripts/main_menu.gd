@@ -8,6 +8,8 @@ func _ready() -> void:
 	$CenterContainer/SettingsMenu/SettingsScrollList/SettingsVBox/MainVolSlider.value = db_to_linear(AudioServer.get_bus_volume_db(AudioServer.get_bus_index("Master")))
 	$CenterContainer/SettingsMenu/SettingsScrollList/SettingsVBox/MusicVolSlider.value = db_to_linear(AudioServer.get_bus_volume_db(AudioServer.get_bus_index("MUSIC")))
 	$CenterContainer/SettingsMenu/SettingsScrollList/SettingsVBox/SFXVolSlider.value = db_to_linear(AudioServer.get_bus_volume_db(AudioServer.get_bus_index("SFX")))
+	
+	$Version.text = str("Current Version: ", ProjectSettings.get_setting("application/config/version"))
 
 
 func _on_play_pressed() -> void:

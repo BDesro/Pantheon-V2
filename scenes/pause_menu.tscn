@@ -25,6 +25,7 @@ Button/styles/normal = SubResource("StyleBoxFlat_myx47")
 
 [node name="PauseMenu" type="CanvasLayer"]
 process_mode = 2
+visible = false
 
 [node name="ColorRect" type="ColorRect" parent="."]
 z_index = -1
