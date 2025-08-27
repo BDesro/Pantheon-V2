@@ -65,4 +65,4 @@ func _movement_animations(): # Basic idling and walking coupling with movement
 func _on_spear_hit_area_entered(area: Area2D) -> void:
 	if area.is_in_group("enemies"):
 		spear_hitbox.set_deferred("disabled", true)
-		area.get_parent().take_damage(spear_thrust_dmg)
+		area.get_parent().take_damage(spear_thrust_dmg, global_position)

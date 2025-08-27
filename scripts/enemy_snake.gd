@@ -12,7 +12,7 @@ signal enemy_died
 
 var rng = RandomNumberGenerator.new()
 var random_distance_from_player = randf_range(0, 30)
-var stop_moving: bool = false
+@export var stop_moving: bool = true
 var direction = global_position.direction_to(Vector2(0,0))
 var position_to_attack = Vector2(0, 0)
 
@@ -21,16 +21,22 @@ var health: int = 50
 var is_alive: bool = true
 
 var speed: float = 50
-var can_move: bool = true
+var knockback_velocity: Vector2 = Vector2.ZERO
+var knockback_decay: float = 100.0 # How quickly the knockback slows
+var last_hit_source: Vector2
 
 var player = null
 
 func _on_ready():
-	await health_bar.ready
+	stop_moving = false
+	while not health_bar.ready:
+		get_tree().process_frame
 	health_bar.init_health(health)
 
-func _process(_delta):
+func _process(delta):
 	player = GlobalPlayerData.global_player_instance
+	
+	_handle_knockback(delta)
 	
 	if stop_moving == false and is_instance_valid(player):
 		_handle_animations()
@@ -55,6 +61,12 @@ func _handle_animations():
 		sprite.play("slither")
 		rotation = direction.angle() - PI/2
 
+func _handle_knockback(delta: float): # Decays knockback speed each frame
+	if knockback_velocity.length() > 10.0:
+		var motion = knockback_velocity * delta
+		move_and_collide(motion)
+		knockback_velocity = knockback_velocity.move_toward(Vector2.ZERO, knockback_decay * delta)
+
 func _set_health(value: int):
 	health = clamp(value, 0, max_health)
 	if health <= 0 and is_alive:
@@ -62,10 +74,16 @@ func _set_health(value: int):
 	
 	health_bar.health = health # Gotta get this connected via autoload, not active_manager
 
-func take_damage(damage: int): # This needs to get replaced in the global info script (just testing for now)
+func take_damage(damage: int, source_position: Vector2): # This needs to get replaced in the global info script (just testing for now)
+	last_hit_source = source_position
 	flash_anim.play("flash")
 	var new_health = health - damage
 	_set_health(new_health)
+	
+
+func apply_knockback(strength: float = 5000):
+	var knockback_direction = (global_position - last_hit_source).normalized()
+	knockback_velocity = knockback_direction * strength
 
 func _die():
 	set_process(false)
@@ -80,7 +98,6 @@ func _die():
 func _on_animation_finished(anim_name: StringName):
 	if anim_name == "die":
 		queue_free()
-
 
 func _on_hurtbox_area_entered(area: Area2D) -> void: # Currently Damages enemy (UPDATE TO GLOBAL FUNCTIONS WHEN READY)
 	if area.is_in_group("player_hitbox") and hurtbox.monitoring:
