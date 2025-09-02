@@ -81,7 +81,7 @@ func take_damage(damage: int, source_position: Vector2): # This needs to get rep
 	_set_health(new_health)
 	
 
-func apply_knockback(strength: float = 5000):
+func apply_knockback(strength: float = 5000): # Registers a knockback from a hit
 	var knockback_direction = (global_position - last_hit_source).normalized()
 	knockback_velocity = knockback_direction * strength
 

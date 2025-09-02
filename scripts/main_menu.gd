@@ -9,6 +9,7 @@ func _ready() -> void:
 	$CenterContainer/SettingsMenu/SettingsScrollList/SettingsVBox/MusicVolSlider.value = db_to_linear(AudioServer.get_bus_volume_db(AudioServer.get_bus_index("MUSIC")))
 	$CenterContainer/SettingsMenu/SettingsScrollList/SettingsVBox/SFXVolSlider.value = db_to_linear(AudioServer.get_bus_volume_db(AudioServer.get_bus_index("SFX")))
 	
+	# Update version to current (Version must be set in project settings)
 	$Version.text = str("Current Version: ", ProjectSettings.get_setting("application/config/version"))
 
 
