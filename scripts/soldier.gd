@@ -9,7 +9,10 @@ extends CharacterBody2D
 @export var character_id: int = 1 # Used by active_manager's "active" var to keep track of current character
 @export var character_name = "Soldier"
 
-var max_health: int = 100
+var max_health: float = 100
+var max_shield_health: float = 50
+var shield_health: float = 50
+@export var shield_active: bool = false
 var speed: float = 100
 var can_move: bool = true
 
@@ -45,6 +48,9 @@ func _player_movement(_delta):
 	
 	_movement_animations()
 	move_and_slide()
+	
+	#if Input.is_action_pressed("right_click"):
+		
 	
 	if Input.is_action_just_pressed("left_click"):
 		can_move = false
