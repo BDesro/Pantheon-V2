@@ -1,4 +1,4 @@
-[gd_scene load_steps=42 format=3 uid="uid://da5qaqmpvsa64"]
+[gd_scene load_steps=43 format=3 uid="uid://da5qaqmpvsa64"]
 
 [ext_resource type="Script" uid="uid://dgaf7w4cfqo07" path="res://scenes/active_manager.gd" id="1_g2els"]
 [ext_resource type="Script" uid="uid://ebeqiscyvjll" path="res://scripts/soldier.gd" id="2_dqkch"]
@@ -249,6 +249,60 @@ tracks/1/keys = {
 "update": 1,
 "values": [0]
 }
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("ShieldHitbox/ShieldHitboxArea:disabled")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
+[sub_resource type="Animation" id="Animation_dqkch"]
+resource_name = "shield_walk"
+length = 0.7
+tracks/0/type = "method"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AnimatedSprite2D")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [&"shield_walk"],
+"method": &"play"
+}]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("AnimatedSprite2D:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3, 4, 5, 6]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("ShieldHitbox/ShieldHitboxArea:disabled")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
 
 [sub_resource type="Animation" id="Animation_qlg0r"]
 resource_name = "spear_strike"
@@ -292,36 +346,6 @@ tracks/2/keys = {
 }]
 }
 
-[sub_resource type="Animation" id="Animation_dqkch"]
-resource_name = "shield_walk"
-length = 0.7
-tracks/0/type = "method"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("AnimatedSprite2D")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"values": [{
-"args": [&"shield_walk"],
-"method": &"play"
-}]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("AnimatedSprite2D:frame")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1),
-"update": 1,
-"values": [0, 1, 2, 3, 4, 5, 6]
-}
-
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_tuyoq"]
 _data = {
 &"RESET": SubResource("Animation_tuyoq"),
@@ -357,6 +381,10 @@ radius = 5.0
 radius = 6.0
 height = 16.0
 
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_dqkch"]
+radius = 5.0
+height = 20.0
+
 [node name="player" type="Node2D"]
 z_index = 4
 
@@ -364,6 +392,7 @@ z_index = 4
 script = ExtResource("1_g2els")
 
 [node name="soldier" type="CharacterBody2D" parent="active_manager"]
+collision_mask = 5
 motion_mode = 1
 script = ExtResource("2_dqkch")
 
@@ -397,12 +426,23 @@ shape = SubResource("CircleShape2D_3vyb7")
 debug_color = Color(1, 1, 1, 0.42)
 
 [node name="Hitbox" type="Area2D" parent="active_manager/soldier" groups=["player_hitbox"]]
+collision_mask = 4
 priority = 1
 
 [node name="HitboxArea" type="CollisionShape2D" parent="active_manager/soldier/Hitbox"]
 rotation = 1.5708
 shape = SubResource("CapsuleShape2D_qlg0r")
 debug_color = Color(0.0535837, 0.386135, 0.262589, 0.42)
+
+[node name="ShieldHitbox" type="StaticBody2D" parent="active_manager/soldier" groups=["soldier_shield_hitbox"]]
+collision_layer = 2
+collision_mask = 4
+
+[node name="ShieldHitboxArea" type="CollisionShape2D" parent="active_manager/soldier/ShieldHitbox"]
+position = Vector2(0, -6)
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_dqkch")
+debug_color = Color(0, 0.623529, 0.662745, 0.686275)
 
 [node name="Camera2D" type="Camera2D" parent="."]
 zoom = Vector2(4, 4)

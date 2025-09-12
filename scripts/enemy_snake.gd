@@ -47,7 +47,8 @@ func _process(delta):
 			position_to_attack = player.active_character.global_position
 		direction = global_position.direction_to(position_to_attack)
 		velocity = direction * speed
-		move_and_slide()
+		
+		move_and_collide(velocity * delta)
 	else:
 		velocity = Vector2.ZERO
 	
@@ -100,14 +101,20 @@ func _on_animation_finished(anim_name: StringName):
 		queue_free()
 
 func _on_hurtbox_area_entered(area: Area2D) -> void: # Currently Damages enemy (UPDATE TO GLOBAL FUNCTIONS WHEN READY)
-	if area.is_in_group("player_hitbox") and hurtbox.monitoring:
-		_process_hit(area)
+	if hurtbox.monitoring:
+		if area.is_in_group("player_hitbox"):
+			_process_player_hit(area)
+		elif area.is_in_group("soldier_shield_hitbox"):
+			_process_shield_hit(area)
 
-func _process_hit(player_hitbox):
+func _process_player_hit(player_hitbox):
 	# Damage the player
 	hurtbox.set_deferred("monitoring", false)
 	player_hitbox.owner.get_node("active_manager").take_damage(10)
 	cd_timer.start()
+
+func _process_shield_hit(shield_hitbox):
+	pass
 
 func _on_player_died():
 	stop_moving = true
@@ -118,7 +125,9 @@ func _on_hurtbox_cd_timer_timeout() -> void:
 	
 	for area in hurtbox.get_overlapping_areas():
 		if area.is_in_group("player_hitbox"):
-			_process_hit(area)
+			_process_player_hit(area)
+		elif area.is_in_group("soldier_shield_hitbox"):
+			_process_shield_hit(area)
 
 func _on_change_direction_timer_timeout() -> void:
 	random_distance_from_player = randf_range(0, 30)

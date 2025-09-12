@@ -4,6 +4,7 @@ extends CharacterBody2D
 @onready var anim_player = $AnimationPlayer
 @onready var flash_anim = $FlashAnimation
 @onready var spear_hitbox = $AnimatedSprite2D/SpearHit/CollisionShape2D
+@onready var shield_hitbox = $ShieldHitbox/ShieldHitboxArea
 @onready var is_active: bool = false
 
 @export var character_id: int = 1 # Used by active_manager's "active" var to keep track of current character
@@ -49,13 +50,15 @@ func _player_movement(_delta):
 	_movement_animations()
 	move_and_slide()
 	
-	#if Input.is_action_pressed("right_click"):
+	if Input.is_action_pressed("right_click"):
+		anim_player.play("shield_walk")
+	else:
+		anim_player.stop()
+		shield_hitbox.disabled = true
 		
-	
-	if Input.is_action_just_pressed("left_click"):
-		can_move = false
-		
-		anim_player.play("spear_strike")
+		if Input.is_action_just_pressed("left_click"):
+			can_move = false # Useless I think
+			anim_player.play("spear_strike")
 	
 
 func _movement_animations(): # Basic idling and walking coupling with movement
