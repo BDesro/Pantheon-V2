@@ -28,17 +28,17 @@ func _ready():
 		set_active_character(characters[0])
 	
 	_setup_camera()
-	GlobalPlayerData.global_player_instance = self
+	GlobalData.global_player_instance = self
 
 func _on_ready() -> void:
 	health = active_character.max_health
 	is_alive = true
 	await _wait_for_ui()
-	health_bar = GlobalPlayerData.player_health_bar
+	health_bar = GlobalData.player_health_bar
 	health_bar.init_health(health)
 
 func _wait_for_ui():
-	while GlobalPlayerData.player_health_bar == null:
+	while GlobalData.player_health_bar == null:
 		await get_tree().process_frame
 
 func set_active_character(new_character: CharacterBody2D):
@@ -98,8 +98,9 @@ func take_damage(damage: int): # This needs to get replaced in the global info s
 
 func _die():
 	active_character.get_node("CollisionShape2D").set_deferred("disabled", true) # Disables collision on death
-	GlobalPlayerData.node_creation_parent.game_over()
+	player_died.emit()
+	GlobalData.node_creation_parent.game_over()
 	queue_free()
 
 func _exit_tree() -> void:
-	GlobalPlayerData.global_player_instance = null
+	GlobalData.global_player_instance = null

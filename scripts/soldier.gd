@@ -15,7 +15,6 @@ var max_shield_health: float = 50
 var shield_health: float = 50
 @export var shield_active: bool = false
 var speed: float = 100
-var can_move: bool = true
 
 # Damage Variables
 var spear_thrust_dmg: int = 30
@@ -37,9 +36,6 @@ func _player_movement(_delta):
 	
 	rotation = look_direction.angle() + PI / 2
 	
-	#if anim_player.is_playing() == false:
-		#can_move = true
-	
 	# Basic movement
 	var input_direction = Input.get_vector("left", "right", "up", "down")
 	if input_direction.length() > 0:
@@ -52,13 +48,17 @@ func _player_movement(_delta):
 	
 	if Input.is_action_pressed("right_click"):
 		anim_player.play("shield_walk")
+		shield_hitbox.disabled = false
 	else:
-		anim_player.stop()
-		shield_hitbox.disabled = true
-		
-		if Input.is_action_just_pressed("left_click"):
-			can_move = false # Useless I think
-			anim_player.play("spear_strike")
+		if anim_player.is_playing():
+			if anim_player.current_animation == "shield_walk":
+				anim_player.stop()
+				shield_hitbox.disabled = true
+			return
+		else:
+			if Input.is_action_just_pressed("left_click"):
+				anim_player.stop()
+				anim_player.play("spear_strike")
 	
 
 func _movement_animations(): # Basic idling and walking coupling with movement
@@ -75,3 +75,6 @@ func _on_spear_hit_area_entered(area: Area2D) -> void:
 	if area.is_in_group("enemies"):
 		spear_hitbox.set_deferred("disabled", true)
 		area.get_parent().take_damage(spear_thrust_dmg, global_position)
+
+func take_shield_damage(damage: int):
+	pass

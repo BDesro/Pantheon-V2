@@ -249,18 +249,6 @@ tracks/1/keys = {
 "update": 1,
 "values": [0]
 }
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("ShieldHitbox/ShieldHitboxArea:disabled")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [false]
-}
 
 [sub_resource type="Animation" id="Animation_dqkch"]
 resource_name = "shield_walk"
@@ -290,18 +278,6 @@ tracks/1/keys = {
 "transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1),
 "update": 1,
 "values": [0, 1, 2, 3, 4, 5, 6]
-}
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("ShieldHitbox/ShieldHitboxArea:disabled")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [false]
 }
 
 [sub_resource type="Animation" id="Animation_qlg0r"]
@@ -399,7 +375,7 @@ script = ExtResource("2_dqkch")
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="active_manager/soldier"]
 material = SubResource("ShaderMaterial_fjrip")
 sprite_frames = SubResource("SpriteFrames_fulsm")
-animation = &"shield_walk"
+animation = &"spear_thrust"
 autoplay = "idle"
 
 [node name="SpearHit" type="Area2D" parent="active_manager/soldier/AnimatedSprite2D"]
@@ -442,6 +418,7 @@ collision_mask = 4
 position = Vector2(0, -6)
 rotation = 1.5708
 shape = SubResource("CapsuleShape2D_dqkch")
+disabled = true
 debug_color = Color(0, 0.623529, 0.662745, 0.686275)
 
 [node name="Camera2D" type="Camera2D" parent="."]

@@ -11,14 +11,14 @@ config_version=5
 [application]
 
 config/name="Pantheon v2"
-config/version="0.3.0"
+config/version="0.4.3"
 run/main_scene="uid://bdmu5xc41yqp0"
 config/features=PackedStringArray("4.4", "Forward Plus")
-config/icon="res://assets/icon.svg"
+config/icon="uid://c2to8q1xfo6uv"
 
 [autoload]
 
-GlobalPlayerData="*res://scripts/Autoloads/global_player_data.gd"
+GlobalData="*res://scripts/Autoloads/global_data.gd"
 
 [display]
 

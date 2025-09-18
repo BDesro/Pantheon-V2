@@ -3,13 +3,13 @@
 [ext_resource type="Script" uid="uid://cf31ow351bto6" path="res://scripts/world.gd" id="1_k0juu"]
 [ext_resource type="PackedScene" uid="uid://da5qaqmpvsa64" path="res://scenes/player.tscn" id="1_nnsk1"]
 [ext_resource type="Texture2D" uid="uid://cfq12x3p7k3l6" path="res://assets/tiles/fullSimpleTileset.png" id="2_rwgxs"]
-[ext_resource type="PackedScene" uid="uid://cgwpeqh6ocmij" path="res://scenes/enemy_snake.tscn" id="3_4wyf3"]
+[ext_resource type="PackedScene" uid="uid://bykflutfldv1h" path="res://scenes/snake_spawner.tscn" id="5_e3hyu"]
 [ext_resource type="Script" uid="uid://xywqb7k0ad5o" path="res://scripts/game_ui.gd" id="5_i7141"]
 [ext_resource type="FontFile" uid="uid://obg2py2apxig" path="res://assets/fonts/Orange Kid.otf" id="5_qfnet"]
 [ext_resource type="PackedScene" uid="uid://b7dsjvske0oja" path="res://scenes/HealthBar.tscn" id="6_i7141"]
-[ext_resource type="PackedScene" uid="uid://bykflutfldv1h" path="res://scenes/snake_spawner.tscn" id="8_4mrxx"]
 [ext_resource type="Script" uid="uid://h2tx5yvtfb28" path="res://scripts/pause_menu.gd" id="9_7r4gi"]
 [ext_resource type="PackedScene" uid="uid://djyri8nicqsrg" path="res://scenes/pause_menu.tscn" id="9_w7kh3"]
+[ext_resource type="PackedScene" uid="uid://bm1vw6a6my02m" path="res://scenes/wave_spawner.tscn" id="10_w7kh3"]
 [ext_resource type="PackedScene" uid="uid://c2ual51w4orrs" path="res://scenes/game_over.tscn" id="11_e3hyu"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_4wyf3"]
@@ -66,18 +66,6 @@ tile_set = SubResource("TileSet_k0juu")
 [node name="player" parent="." instance=ExtResource("1_nnsk1")]
 visibility_layer = 2
 
-[node name="EnemySnake" parent="." instance=ExtResource("3_4wyf3")]
-z_index = 2
-position = Vector2(0, -81)
-
-[node name="Node" parent="." instance=ExtResource("3_4wyf3")]
-z_index = 2
-position = Vector2(64, -75)
-
-[node name="Node2" parent="." instance=ExtResource("3_4wyf3")]
-z_index = 2
-position = Vector2(-62, -77)
-
 [node name="GameUI" type="CanvasLayer" parent="."]
 script = ExtResource("5_i7141")
 
@@ -105,7 +93,7 @@ patch_margin_right = 64
 metadata/_edit_group_ = true
 metadata/_edit_use_anchors_ = true
 
-[node name="Label" type="Label" parent="GameUI/Control/NinePatchRect"]
+[node name="NameLabel" type="Label" parent="GameUI/Control/NinePatchRect"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -140,27 +128,46 @@ metadata/_edit_use_anchors_ = true
 [node name="ScoreLabel" type="Label" parent="GameUI/Control"]
 layout_mode = 1
 anchors_preset = -1
-anchor_left = 0.458333
-anchor_top = 0.0148148
-anchor_right = 0.567509
-anchor_bottom = 0.0834501
-offset_right = -147.617
-offset_bottom = -49.1261
+anchor_left = 0.323958
+anchor_top = 0.844444
+anchor_right = 0.396354
+anchor_bottom = 0.900926
 grow_horizontal = 2
 grow_vertical = 2
-scale = Vector2(3.38093, 2.96504)
 theme_override_fonts/font = ExtResource("5_qfnet")
+theme_override_font_sizes/font_size = 50
 text = "Score: 0"
 metadata/_edit_use_anchors_ = true
 
-[node name="SnakeSpawner" parent="." instance=ExtResource("8_4mrxx")]
-z_index = 2
-position = Vector2(0, -128)
+[node name="WaveLabel" type="Label" parent="GameUI/Control"]
+layout_mode = 1
+offset_left = 864.0
+offset_top = 16.0
+offset_right = 1057.0
+offset_bottom = 107.0
+theme_override_fonts/font = ExtResource("5_qfnet")
+theme_override_font_sizes/font_size = 75
+text = "Wave: 0"
 
 [node name="PauseMenu" parent="." instance=ExtResource("9_w7kh3")]
 script = ExtResource("9_7r4gi")
 
 [node name="GameOver" parent="." instance=ExtResource("11_e3hyu")]
+
+[node name="WaveSpawner" parent="." instance=ExtResource("10_w7kh3")]
+spawners = Array[NodePath]([NodePath("../SnakeSpawner"), NodePath("../SnakeSpawner2"), NodePath("../SnakeSpawner3"), NodePath("../SnakeSpawner4")])
+
+[node name="SnakeSpawner" parent="." instance=ExtResource("5_e3hyu")]
+position = Vector2(280, 320)
+
+[node name="SnakeSpawner2" parent="." instance=ExtResource("5_e3hyu")]
+position = Vector2(-272, 320)
+
+[node name="SnakeSpawner3" parent="." instance=ExtResource("5_e3hyu")]
+position = Vector2(280, -320)
+
+[node name="SnakeSpawner4" parent="." instance=ExtResource("5_e3hyu")]
+position = Vector2(-280, -320)
 
 [connection signal="pause_pressed" from="." to="PauseMenu" method="_on_pause_button_pressed"]
 [connection signal="ready" from="." to="." method="_on_ready"]

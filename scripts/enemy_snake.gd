@@ -1,4 +1,5 @@
 extends CharacterBody2D
+class_name EnemySnake
 
 signal enemy_died
 
@@ -34,7 +35,7 @@ func _on_ready():
 	health_bar.init_health(health)
 
 func _process(delta):
-	player = GlobalPlayerData.global_player_instance
+	player = GlobalData.global_player_instance
 	
 	_handle_knockback(delta)
 	
@@ -87,18 +88,19 @@ func apply_knockback(strength: float = 5000): # Registers a knockback from a hit
 	knockback_velocity = knockback_direction * strength
 
 func _die():
-	set_process(false)
-	collision_shape.set_deferred("disabled", true)# Disable environmental collision
-	hurtbox.set_deferred("monitoring", false) # Can no longer hurt the player
-	hitbox.set_deferred("monitorable", false) # Will no longer register hits by the player
-	health_bar.queue_free()
-	
-	sprite.play("die")
+	#set_process(false)
+	#collision_shape.set_deferred("disabled", true)# Disable environmental collision
+	#hurtbox.set_deferred("monitoring", false) # Can no longer hurt the player
+	#hitbox.set_deferred("monitorable", false) # Will no longer register hits by the player
+	#health_bar.queue_free()
+	#
+	#sprite.play("die")
+	$AnimationPlayer.play("die")
 	enemy_died.emit()
 
 func _on_animation_finished(anim_name: StringName):
 	if anim_name == "die":
-		queue_free()
+		get_parent().queue_free()
 
 func _on_hurtbox_area_entered(area: Area2D) -> void: # Currently Damages enemy (UPDATE TO GLOBAL FUNCTIONS WHEN READY)
 	if hurtbox.monitoring:
@@ -133,4 +135,4 @@ func _on_change_direction_timer_timeout() -> void:
 	random_distance_from_player = randf_range(0, 30)
 
 func _on_enemy_died() -> void:
-	GlobalPlayerData.increase_player_score(10)
+	GlobalData.increase_player_score(10)
