@@ -1,5 +1,6 @@
 extends Node2D
 
+var game_scene: PackedScene
 
 func _ready() -> void:
 	$CenterContainer/SettingsMenu/SettingsScrollList/SettingsVBox/Fullscreen.button_pressed = true if DisplayServer.window_get_mode() == DisplayServer.WINDOW_MODE_EXCLUSIVE_FULLSCREEN else false
@@ -12,12 +13,14 @@ func _ready() -> void:
 	# Update version to current (Version must be set in project settings)
 	$Version.text = str("Current Version: ", ProjectSettings.get_setting("application/config/version"))
 
+func _on_ready():
+	game_scene = preload("res://scenes/world.tscn")
 
 func _on_play_pressed() -> void:
 	# Ensures the game gets unpaused if a previous one was quit
 	if get_tree().paused == true:
 		get_tree().paused = false
-	get_tree().change_scene_to_file("res://scenes/world.tscn")
+	get_tree().change_scene_to_packed(game_scene)
 
 
 func _on_settings_pressed() -> void:

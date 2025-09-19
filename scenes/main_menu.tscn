@@ -357,6 +357,7 @@ theme_override_font_sizes/font_size = 32
 text = "Current Version: v0.3.0"
 vertical_alignment = 1
 
+[connection signal="ready" from="." to="." method="_on_ready"]
 [connection signal="pressed" from="CenterContainer/MainButtons/Play" to="." method="_on_play_pressed"]
 [connection signal="pressed" from="CenterContainer/MainButtons/Settings" to="." method="_on_settings_pressed"]
 [connection signal="pressed" from="CenterContainer/MainButtons/Credits" to="." method="_on_credits_pressed"]
