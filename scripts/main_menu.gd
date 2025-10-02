@@ -14,6 +14,7 @@ func _ready() -> void:
 	$Version.text = str("Current Version: ", ProjectSettings.get_setting("application/config/version"))
 
 func _on_ready():
+	# Fix with ResourceLoader
 	game_scene = preload("res://scenes/world.tscn")
 
 func _on_play_pressed() -> void:
