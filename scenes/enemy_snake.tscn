@@ -1,4 +1,4 @@
-[gd_scene load_steps=40 format=3 uid="uid://cgwpeqh6ocmij"]
+[gd_scene load_steps=41 format=3 uid="uid://cgwpeqh6ocmij"]
 
 [ext_resource type="Script" uid="uid://ddy8ypcglu873" path="res://scripts/enemy_snake.gd" id="1_8bq8f"]
 [ext_resource type="Texture2D" uid="uid://dcy6bsn8020rp" path="res://assets/character_art/Pantheon_Enemy_Snake.png" id="2_qmh0l"]
@@ -395,10 +395,14 @@ tracks/6/keys = {
 "values": [&"die"]
 }
 
+[sub_resource type="Animation" id="Animation_nexp4"]
+resource_name = "strike"
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_a35dn"]
 _data = {
 &"RESET": SubResource("Animation_2pab6"),
-&"die": SubResource("Animation_xhlo2")
+&"die": SubResource("Animation_xhlo2"),
+&"strike": SubResource("Animation_nexp4")
 }
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_xhlo2"]

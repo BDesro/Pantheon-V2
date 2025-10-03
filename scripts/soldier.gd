@@ -10,14 +10,15 @@ extends CharacterBody2D
 @export var character_id: int = 1 # Used by active_manager's "active" var to keep track of current character
 @export var character_name = "Soldier"
 
-var max_health: float = 100
+var max_health: int = 100
+var health_regen_per_sec: int = 2
 var max_shield_health: float = 50
 var shield_health: float = 50
 @export var shield_active: bool = false
 var speed: float = 100
 
 # Damage Variables
-var spear_thrust_dmg: int = 30
+var spear_thrust_dmg: int = 50
 
 func _physics_process(delta: float):
 	

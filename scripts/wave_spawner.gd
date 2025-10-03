@@ -17,7 +17,7 @@ func _on_ready():
 func start_next_wave():
 	wave_number += 1
 	
-	GlobalData.wave_label.text = "Wave: " + str(wave_number)
+	GlobalData.wave_label.update_wave(wave_number)
 	
 	var enemy_count = int(base_enemy_count * pow(scaling_factor, wave_number - 1))
 	print("Starting Wave ", wave_number, " with ", enemy_count, " enemies")

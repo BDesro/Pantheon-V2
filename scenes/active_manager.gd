@@ -2,6 +2,9 @@ extends Node
 
 signal player_died
 
+@onready var health_regen_timer: Timer = $"../HealthRegenTimer"
+@onready var time_before_regen: Timer = $"../TimeBeforeRegen"
+
 @onready var active: int = 1
 @onready var camera: Camera2D = get_parent().get_node("Camera2D")
 var health_bar: ProgressBar = null
@@ -95,6 +98,13 @@ func take_damage(damage: int): # This needs to get replaced in the global info s
 	var new_health = health - damage
 	_set_health(new_health)
 	
+	health_regen_timer.one_shot = true
+	health_regen_timer.stop()
+	time_before_regen.start()
+
+func heal(amount: int):
+	var new_health = health + amount
+	_set_health(new_health)
 
 func _die():
 	active_character.get_node("CollisionShape2D").set_deferred("disabled", true) # Disables collision on death
@@ -104,3 +114,14 @@ func _die():
 
 func _exit_tree() -> void:
 	GlobalData.global_player_instance = null
+
+func _on_health_regen_timer_timeout() -> void:
+	if 0 < health and health < active_character.max_health:
+		heal(ceil(active_character.health_regen_per_sec / 2))
+	else:
+		health_regen_timer.stop()
+		health_regen_timer.one_shot = true
+
+func _on_time_before_regen_timeout() -> void:
+	health_regen_timer.one_shot = false
+	health_regen_timer.start()

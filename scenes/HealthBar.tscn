@@ -1,6 +1,7 @@
-[gd_scene load_steps=6 format=3 uid="uid://b7dsjvske0oja"]
+[gd_scene load_steps=7 format=3 uid="uid://b7dsjvske0oja"]
 
 [ext_resource type="Script" uid="uid://c555gfhcepsiv" path="res://scripts/health_bar.gd" id="1_tmb1u"]
+[ext_resource type="FontFile" uid="uid://obg2py2apxig" path="res://assets/fonts/Orange Kid.otf" id="2_rr2qc"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_rr2qc"]
 resource_local_to_scene = true
@@ -11,7 +12,7 @@ bg_color = Color(0.431424, 0.677699, 0.306412, 1)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_6xj70"]
 resource_local_to_scene = true
-bg_color = Color(0.144063, 0.144063, 0.144062, 1)
+bg_color = Color(0.051971, 0.051971, 0.051971, 1)
 shadow_color = Color(0, 0, 0, 0.27451)
 shadow_offset = Vector2(0, 1)
 
@@ -20,13 +21,16 @@ resource_local_to_scene = true
 bg_color = Color(1, 1, 1, 1)
 
 [node name="HealthBar" type="ProgressBar"]
-offset_right = 300.0
-offset_bottom = 12.0
+anchors_preset = -1
+anchor_right = 0.15625
+anchor_bottom = 0.0111111
 theme_override_styles/background = SubResource("StyleBoxEmpty_rr2qc")
 theme_override_styles/fill = SubResource("StyleBoxFlat_8p41q")
 value = 60.0
 show_percentage = false
 script = ExtResource("1_tmb1u")
+label_on = false
+metadata/_edit_use_anchors_ = true
 
 [node name="DamageBar" type="ProgressBar" parent="."]
 z_index = -1
@@ -45,4 +49,22 @@ show_percentage = false
 wait_time = 0.4
 one_shot = true
 
+[node name="Label" type="Label" parent="."]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -5.0
+offset_bottom = 3.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("2_rr2qc")
+theme_override_font_sizes/font_size = 16
+text = "100/100"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[connection signal="ready" from="." to="." method="_on_ready"]
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
+[connection signal="resized" from="Label" to="." method="_on_label_resized"]

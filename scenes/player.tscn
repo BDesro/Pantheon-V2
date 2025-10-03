@@ -425,5 +425,15 @@ debug_color = Color(0, 0.623529, 0.662745, 0.686275)
 zoom = Vector2(4, 4)
 position_smoothing_speed = 10.0
 
+[node name="HealthRegenTimer" type="Timer" parent="."]
+wait_time = 0.5
+one_shot = true
+
+[node name="TimeBeforeRegen" type="Timer" parent="."]
+wait_time = 2.0
+one_shot = true
+
 [connection signal="ready" from="active_manager" to="active_manager" method="_on_ready"]
 [connection signal="area_entered" from="active_manager/soldier/AnimatedSprite2D/SpearHit" to="active_manager/soldier" method="_on_spear_hit_area_entered"]
+[connection signal="timeout" from="HealthRegenTimer" to="active_manager" method="_on_health_regen_timer_timeout"]
+[connection signal="timeout" from="TimeBeforeRegen" to="active_manager" method="_on_time_before_regen_timeout"]
