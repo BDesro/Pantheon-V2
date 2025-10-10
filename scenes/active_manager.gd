@@ -5,7 +5,7 @@ signal player_died
 @onready var health_regen_timer: Timer = $"../HealthRegenTimer"
 @onready var time_before_regen: Timer = $"../TimeBeforeRegen"
 
-@onready var active: int = 1
+@onready var active: int = 0
 @onready var camera: Camera2D = get_parent().get_node("Camera2D")
 var health_bar: ProgressBar = null
 
@@ -22,6 +22,8 @@ func _ready():
 	for child in get_children():
 		if child is CharacterBody2D:
 			characters.append(child)
+			child.col_shape.set_deferred("disabled", true)
+			child.hitbox.set_deferred("monitorable", false)
 			child.set_process(false) # Deactivate initially
 			child.set_physics_process(false)
 			child.hide()
@@ -54,37 +56,35 @@ func set_active_character(new_character: CharacterBody2D):
 		active_character.set_physics_process(false)
 		# Will throw animation to ascend/descend here
 		active_character.hide()
+		active_character.col_shape.set_deferred("disabled", true)
+		active_character.hitbox.set_deferred("monitorable", false)
 	
 	active_character = new_character
+	active = active_character.character_id
+	health = active_character.max_health
+	
+	await _on_ready()
+	health_bar.init_health(health)
 	
 	active_character.global_position = current_position
 	active_character.set_process(true)
 	active_character.set_physics_process(true)
+	active_character.col_shape.set_deferred("disabled", false)
+	active_character.hitbox.set_deferred("monitorable", true)
 	active_character.show()
 	
+	GlobalData.set_character_info(active)
 
 func _setup_camera():
 	camera.make_current()
 	
 
 func _process(_delta):
-	if active_character:
-		if kills_since_last_death == kill_threshold:
-			self._ascend()
-			pass
-		
-		camera.global_position = active_character.global_position
+	camera.global_position = active_character.global_position
 
-func _ascend(): # Increments the active character id to ascend to the next player tier
+func ascend(): # Increments the active character id to ascend to the next player tier
 	
-	if active != 1: # Keeps player within range of available characters (ADJUST FOR EACH NEW ONE)
-		active += 1
-		# Eventual logic to handle deactivating the current character and activating the next one.
-		# Should also set new character's location to the previous one's before switching and
-		# activating.
-		# Should also increase the kill threshold for the next ascension.
-	else:
-		active = 1
+	set_active_character(characters[active + 1])
 
 func _set_health(value: int):
 	health = clamp(value, 0, active_character.max_health)

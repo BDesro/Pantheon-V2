@@ -73,15 +73,17 @@ func _handle_knockback(delta: float): # Decays knockback speed each frame
 func _set_health(value: int):
 	health = clamp(value, 0, max_health)
 	if health <= 0 and is_alive:
+		hitbox.set_deferred("monitorable", false)
 		_die()
 	
 	health_bar.health = health # Gotta get this connected via autoload, not active_manager
 
 func take_damage(damage: int, source_position: Vector2): # This needs to get replaced in the global info script (just testing for now)
-	last_hit_source = source_position
-	flash_anim.play("flash")
-	var new_health = health - damage
-	_set_health(new_health)
+	if health > 0:
+		last_hit_source = source_position
+		flash_anim.play("flash")
+		var new_health = health - damage
+		_set_health(new_health)
 	
 
 func apply_knockback(strength: float = 5000): # Registers a knockback from a hit

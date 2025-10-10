@@ -5,20 +5,23 @@ extends CharacterBody2D
 @onready var flash_anim = $FlashAnimation
 @onready var spear_hitbox = $AnimatedSprite2D/SpearHit/CollisionShape2D
 @onready var shield_hitbox = $ShieldHitbox/ShieldHitboxArea
+@onready var hitbox = $Hitbox
 @onready var is_active: bool = false
 
-@export var character_id: int = 1 # Used by active_manager's "active" var to keep track of current character
+@export var character_id: int = 0 # Used by active_manager's "active" var to keep track of current character
 @export var character_name = "Soldier"
 
-var max_health: int = 100
-var health_regen_per_sec: int = 2
-var max_shield_health: float = 50
+@onready var col_shape = $CollisionShape2D
+
+@export var max_health: int = 100
+@export var health_regen_per_sec: int = 2
+@export var max_shield_health: float = 50
 var shield_health: float = 50
 @export var shield_active: bool = false
 var speed: float = 100
 
 # Damage Variables
-var spear_thrust_dmg: int = 50
+var spear_thrust_dmg: int = 30
 
 func _physics_process(delta: float):
 	

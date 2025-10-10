@@ -1,0 +1,99 @@
+extends CharacterBody2D
+
+# Child Nodes
+@onready var sprite = $AnimatedSprite2D
+@onready var anim_player = $AnimationPlayer
+@onready var flash_anim = $FlashAnimation
+@onready var col_shape = $CollisionShape2D
+@onready var hitbox = $HitBox
+@onready var sword_hitbox = $AnimatedSprite2D/Sword1Hit/CollisionPolygon2D
+
+# Summons
+@export var fireball: PackedScene = preload("res://scenes/fireball.tscn")
+
+# Character Info / Stats
+@export var character_id: int = 1 # Used by active_manager's "active" var to keep track of current character
+@export var character_name = "Adept"
+@export var max_health: int = 225
+@export var health_regen_per_sec: int = 4
+@export var speed: float = 125.0
+@export var sword_dmg = 50
+
+var last_sword: StringName = "sword1"
+
+var input_direction: Vector2
+
+func _physics_process(delta: float):
+	_player_movement(delta)
+
+func _player_movement(_delta):
+	
+	if anim_player.current_animation != "dash":
+		# Makes the character face the direction of the mouse on screen
+		var mouse_position = get_global_mouse_position()
+		var look_direction = (mouse_position - global_position).normalized()
+		
+		rotation = look_direction.angle() + PI / 2
+		
+		# Basic movement
+		input_direction = Input.get_vector("left", "right", "up", "down")
+		if input_direction.length() > 0:
+			input_direction = input_direction.normalized()
+		
+		velocity = input_direction * speed
+	
+	_movement_animations()
+	move_and_slide()
+	
+	if Input.is_action_just_pressed("shift"):
+		anim_player.stop()
+		anim_player.play("fireball")
+	elif Input.is_action_just_pressed("space"):
+		anim_player.stop()
+		anim_player.play("dash")
+		
+	elif not anim_player.is_playing():
+		if Input.is_action_just_pressed("left_click"):
+			anim_player.stop()
+			anim_player.play("sword1")
+
+func _movement_animations(): # Basic idling and walking coupling with movement
+	if anim_player.is_playing():
+		return
+	
+	if velocity.x != 0 or velocity.y != 0:
+		sprite.play("walk")
+	else:
+		sprite.play("idle")
+
+func _on_anim_player_animation_finished(anim_name: StringName) -> void:
+	if anim_name == "sword1" or anim_name == "sword2":
+		last_sword = anim_name
+		
+	if Input.is_action_pressed("left_click"):
+		if last_sword == "sword1":
+			anim_player.play("sword2")
+		elif last_sword == "sword2":
+			anim_player.play("sword1")
+
+func cast_fireball():
+	var fire = fireball.instantiate()
+	
+	var look_direction = (get_global_mouse_position() - global_position).normalized()
+	fire.global_position = global_position + look_direction * 10
+	fire.direction = (get_global_mouse_position() - global_position).normalized()
+	get_parent().add_child.call_deferred(fire)
+
+func _on_sword_1_hit_area_entered(area: Area2D) -> void:
+	if area.is_in_group("enemies"):
+		sword_hitbox.set_deferred("disabled", true)
+		area.get_parent().take_damage(sword_dmg, global_position)
+
+func _on_sword_2_hit_area_entered(area: Area2D) -> void:
+	if area.is_in_group("enemies"):
+		sword_hitbox.set_deferred("disabled", true)
+		area.get_parent().take_damage(sword_dmg, global_position)
+
+func _handle_dash():
+	rotation = input_direction.angle() + PI / 2
+	velocity = input_direction * speed * 2
