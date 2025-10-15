@@ -1,0 +1,54 @@
+[gd_scene load_steps=5 format=3 uid="uid://cftl3vk1cb8ic"]
+
+[ext_resource type="Script" uid="uid://cwo7i6q42w5nu" path="res://scripts/loading_screen.gd" id="1_5phy8"]
+[ext_resource type="Texture2D" uid="uid://cnruh4vbp0h50" path="res://assets/Pantheon_Logo.svg" id="1_ku3bi"]
+[ext_resource type="Texture2D" uid="uid://b12ifbqmkjnrt" path="res://assets/loading_textures/Pantheon_Loading_Back.svg" id="2_5phy8"]
+[ext_resource type="Texture2D" uid="uid://cwcjigkem8xqc" path="res://assets/loading_textures/Pantheon_Loading_Fore.svg" id="3_djmwj"]
+
+[node name="LoadingScreen" type="CanvasLayer"]
+script = ExtResource("1_5phy8")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 1)
+
+[node name="TextureRect" type="TextureRect" parent="."]
+anchors_preset = -1
+anchor_left = 0.451562
+anchor_top = 0.419444
+anchor_right = 0.551562
+anchor_bottom = 0.597222
+offset_right = -64.0
+offset_bottom = -64.0
+scale = Vector2(1.5, 1.5)
+texture = ExtResource("1_ku3bi")
+metadata/_edit_use_anchors_ = true
+
+[node name="LoadingRing" type="TextureProgressBar" parent="."]
+anchors_preset = -1
+anchor_left = 0.433333
+anchor_top = 0.385185
+anchor_right = 0.566667
+anchor_bottom = 0.622222
+offset_right = -128.0
+offset_bottom = -128.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(2, 2)
+size_flags_horizontal = 4
+size_flags_vertical = 4
+fill_mode = 5
+texture_under = ExtResource("2_5phy8")
+texture_progress = ExtResource("3_djmwj")
+metadata/_edit_use_anchors_ = true
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 2.0
+one_shot = true
+autostart = true
+
+[connection signal="ready" from="." to="." method="_on_ready"]

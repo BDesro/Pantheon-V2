@@ -14,7 +14,7 @@ config/name="Pantheon v2"
 config/version="0.5.1"
 run/main_scene="uid://bdmu5xc41yqp0"
 config/features=PackedStringArray("4.4", "Forward Plus")
-config/icon="uid://c2to8q1xfo6uv"
+config/icon="uid://cnruh4vbp0h50"
 
 [autoload]
 
