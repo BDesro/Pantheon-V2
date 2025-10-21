@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=4 uid="uid://csop24phi7hqi"]
+[gd_scene load_steps=20 format=4 uid="uid://csop24phi7hqi"]
 
 [ext_resource type="Script" uid="uid://cf31ow351bto6" path="res://scripts/world.gd" id="1_k0juu"]
 [ext_resource type="PackedScene" uid="uid://da5qaqmpvsa64" path="res://scenes/player.tscn" id="1_nnsk1"]
@@ -7,7 +7,8 @@
 [ext_resource type="Script" uid="uid://xywqb7k0ad5o" path="res://scripts/game_ui.gd" id="5_i7141"]
 [ext_resource type="FontFile" uid="uid://obg2py2apxig" path="res://assets/fonts/Orange Kid.otf" id="5_qfnet"]
 [ext_resource type="PackedScene" uid="uid://b7dsjvske0oja" path="res://scenes/HealthBar.tscn" id="6_i7141"]
-[ext_resource type="Script" uid="uid://wc3k4v7id8uh" path="res://scenes/wave_label.gd" id="7_q5onr"]
+[ext_resource type="Script" uid="uid://wc3k4v7id8uh" path="res://scripts/wave_label.gd" id="7_q5onr"]
+[ext_resource type="Script" uid="uid://divg5oweyi6wo" path="res://scripts/num_enemies_label.gd" id="8_jhx03"]
 [ext_resource type="Script" uid="uid://h2tx5yvtfb28" path="res://scripts/pause_menu.gd" id="9_7r4gi"]
 [ext_resource type="PackedScene" uid="uid://djyri8nicqsrg" path="res://scenes/pause_menu.tscn" id="9_w7kh3"]
 [ext_resource type="PackedScene" uid="uid://bm1vw6a6my02m" path="res://scenes/wave_spawner.tscn" id="10_w7kh3"]
@@ -179,15 +180,17 @@ metadata/_edit_use_anchors_ = true
 
 [node name="WaveLabel" type="Label" parent="GameUI/Control"]
 layout_mode = 1
-offset_left = 864.0
-offset_top = 16.0
-offset_right = 1057.0
-offset_bottom = 107.0
+anchors_preset = -1
+anchor_left = 0.45
+anchor_top = 0.0148148
+anchor_right = 0.550521
+anchor_bottom = 0.0990741
 theme_override_colors/font_color = Color(1, 1, 1, 1)
 theme_override_fonts/font = ExtResource("5_qfnet")
 theme_override_font_sizes/font_size = 75
 text = "Wave: 0"
 script = ExtResource("7_q5onr")
+metadata/_edit_use_anchors_ = true
 
 [node name="PanelContainer" type="PanelContainer" parent="GameUI/Control"]
 layout_mode = 1
@@ -197,6 +200,17 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_jhx03")
+
+[node name="NumEnemiesLabel" type="Label" parent="GameUI/Control"]
+layout_mode = 0
+offset_left = 32.0
+offset_top = 32.0
+offset_right = 448.0
+offset_bottom = 93.0
+theme_override_fonts/font = ExtResource("5_qfnet")
+theme_override_font_sizes/font_size = 50
+text = "Enemies Remaining: "
+script = ExtResource("8_jhx03")
 
 [node name="PauseMenu" parent="." instance=ExtResource("9_w7kh3")]
 script = ExtResource("9_7r4gi")

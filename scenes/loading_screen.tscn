@@ -47,7 +47,6 @@ texture_progress = ExtResource("3_djmwj")
 metadata/_edit_use_anchors_ = true
 
 [node name="Timer" type="Timer" parent="."]
-wait_time = 2.0
 one_shot = true
 autostart = true
 

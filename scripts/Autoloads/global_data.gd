@@ -8,6 +8,7 @@ var unit_name_label: Label = null
 var player_health_bar: ProgressBar = null
 var score_label: Label = null
 var wave_label: Label = null
+var num_enemies_label: Label = null
 
 var cur_character_id: int = 1
 var unit_name = "Soldier"

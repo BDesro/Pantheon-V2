@@ -5,6 +5,7 @@ signal pause_pressed
 
 @onready var score_label = $GameUI/Control/ScoreLabel
 @onready var wave_label = $GameUI/Control/WaveLabel
+@onready var num_enemies_label = $GameUI/Control/NumEnemiesLabel
 @onready var game_over_scr = $GameOver
 
 var ui_ready: bool = false
@@ -18,6 +19,7 @@ func _on_ready():
 	
 	GlobalData.score_label = score_label
 	GlobalData.wave_label = wave_label
+	GlobalData.num_enemies_label = num_enemies_label
 
 func is_ui_ready():
 	var is_ready = false

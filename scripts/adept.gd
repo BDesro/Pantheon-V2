@@ -23,6 +23,9 @@ var last_sword: StringName = "sword1"
 
 var input_direction: Vector2
 
+# Default Score Threshold
+@export var ascension_threshold = 5000
+
 func _physics_process(delta: float):
 	_player_movement(delta)
 

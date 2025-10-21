@@ -21,7 +21,7 @@ var load_progress := 0.0
 
 func _process(delta):
 	if load_progress < 100:
-		load_progress += delta * 25.0
+		load_progress += delta * 50.0
 		_update_ring_value(load_progress)
 	else:
 		get_tree().change_scene_to_file("res://scenes/world.tscn")

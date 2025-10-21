@@ -34,6 +34,9 @@ func _on_ready():
 	while not health_bar.ready:
 		get_tree().process_frame
 	health_bar.init_health(health)
+	
+	if GlobalData.global_player_instance:
+		GlobalData.global_player_instance.connect("player_descended", Callable(self, "apply_descension_knockback"))
 
 func _process(delta):
 	player = GlobalData.global_player_instance
@@ -88,6 +91,11 @@ func take_damage(damage: int, source_position: Vector2): # This needs to get rep
 
 func apply_knockback(strength: float = 5000): # Registers a knockback from a hit
 	var knockback_direction = (global_position - last_hit_source).normalized()
+	knockback_velocity = knockback_direction * strength
+
+func apply_descension_knockback(): # Registers a knockback from a hit
+	var strength = 200
+	var knockback_direction = (global_position - GlobalData.global_player_instance.active_character.global_position).normalized()
 	knockback_velocity = knockback_direction * strength
 
 func _die():

@@ -18,10 +18,14 @@ extends CharacterBody2D
 @export var max_shield_health: float = 50
 var shield_health: float = 50
 @export var shield_active: bool = false
+
 var speed: float = 100
 
 # Damage Variables
 var spear_thrust_dmg: int = 30
+
+# Default Score Threshold
+@export var ascension_threshold = 100
 
 func _physics_process(delta: float):
 	

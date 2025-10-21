@@ -1,11 +1,12 @@
 extends Node
 
 signal player_died
+signal player_descended
 
 @onready var health_regen_timer: Timer = $"../HealthRegenTimer"
 @onready var time_before_regen: Timer = $"../TimeBeforeRegen"
 
-@onready var active: int = 0
+@onready var active: int = 1
 @onready var camera: Camera2D = get_parent().get_node("Camera2D")
 var health_bar: ProgressBar = null
 
@@ -30,7 +31,7 @@ func _ready():
 	
 	# Auto-start with first character
 	if characters.size() > 0:
-		set_active_character(characters[0])
+		set_active_character(characters[active])
 	
 	_setup_camera()
 	GlobalData.global_player_instance = self
@@ -83,13 +84,26 @@ func _process(_delta):
 	camera.global_position = active_character.global_position
 
 func ascend(): # Increments the active character id to ascend to the next player tier
+	active += 1
+	set_active_character(characters[active])
+
+func descend():
+	player_descended.emit()
+	active -= 1
 	
-	set_active_character(characters[active + 1])
+	var cur_score = GlobalData.player_score
+	GlobalData.characters[active]["threshold"] = cur_score + characters[active].ascension_threshold
+	set_active_character(characters[active])
+
 
 func _set_health(value: int):
 	health = clamp(value, 0, active_character.max_health)
 	if health <= 0 and is_alive:
-		_die()
+		if active == 0:
+			_die()
+		else:
+			descend()
+			return
 	
 	health_bar.health = health # Gotta get this connected via autoload, not active_manager
 
