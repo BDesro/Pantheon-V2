@@ -7,6 +7,8 @@ extends CharacterBody2D
 @onready var col_shape = $CollisionShape2D
 @onready var hitbox = $HitBox
 @onready var sword_hitbox = $AnimatedSprite2D/Sword1Hit/CollisionPolygon2D
+@onready var dash_cd_timer = $DashCDTimer
+@onready var fireball_cd_timer = $FireballCDTimer
 
 # Summons
 @export var fireball: PackedScene = preload("res://scenes/fireball.tscn")
@@ -48,12 +50,16 @@ func _player_movement(_delta):
 	_movement_animations()
 	move_and_slide()
 	
-	if Input.is_action_just_pressed("shift"):
-		anim_player.stop()
-		anim_player.play("fireball")
+	if Input.is_action_just_pressed("right_click"):
+		if fireball_cd_timer.is_stopped():
+			anim_player.stop()
+			anim_player.play("fireball")
+			fireball_cd_timer.start()
 	elif Input.is_action_just_pressed("space"):
-		anim_player.stop()
-		anim_player.play("dash")
+		if dash_cd_timer.is_stopped():
+			anim_player.stop()
+			anim_player.play("dash")
+			dash_cd_timer.start()
 		
 	elif not anim_player.is_playing():
 		if Input.is_action_just_pressed("left_click"):
@@ -73,11 +79,11 @@ func _on_anim_player_animation_finished(anim_name: StringName) -> void:
 	if anim_name == "sword1" or anim_name == "sword2":
 		last_sword = anim_name
 		
-	if Input.is_action_pressed("left_click"):
-		if last_sword == "sword1":
-			anim_player.play("sword2")
-		elif last_sword == "sword2":
-			anim_player.play("sword1")
+		if Input.is_action_pressed("left_click"):
+			if last_sword == "sword1":
+				anim_player.play("sword2")
+			elif last_sword == "sword2":
+				anim_player.play("sword1")
 
 func cast_fireball():
 	var fire = fireball.instantiate()

@@ -6,7 +6,7 @@ signal player_descended
 @onready var health_regen_timer: Timer = $"../HealthRegenTimer"
 @onready var time_before_regen: Timer = $"../TimeBeforeRegen"
 
-@onready var active: int = 1
+@onready var active: int = 0
 @onready var camera: Camera2D = get_parent().get_node("Camera2D")
 var health_bar: ProgressBar = null
 
