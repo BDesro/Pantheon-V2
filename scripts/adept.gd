@@ -76,8 +76,9 @@ func _movement_animations(): # Basic idling and walking coupling with movement
 		sprite.play("idle")
 
 func _on_anim_player_animation_finished(anim_name: StringName) -> void:
-	if anim_name == "sword1" or anim_name == "sword2":
-		last_sword = anim_name
+	if anim_name == "sword1" or anim_name == "sword2" or anim_name == "dash":
+		if anim_name != "dash":
+			last_sword = anim_name
 		
 		if Input.is_action_pressed("left_click"):
 			if last_sword == "sword1":

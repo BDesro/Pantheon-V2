@@ -1,6 +1,11 @@
-[gd_scene load_steps=2 format=3 uid="uid://bykflutfldv1h"]
+[gd_scene load_steps=3 format=3 uid="uid://bykflutfldv1h"]
 
 [ext_resource type="Script" uid="uid://dhu2aqticetid" path="res://scripts/snake_spawner.gd" id="1_0tmwk"]
+[ext_resource type="Texture2D" uid="uid://b10rtvhiocosu" path="res://assets/Pantheon_Spawner.png" id="2_g4s67"]
 
 [node name="SnakeSpawner" type="Node2D"]
 script = ExtResource("1_0tmwk")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(2, 2)
+texture = ExtResource("2_g4s67")

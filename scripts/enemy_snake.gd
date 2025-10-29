@@ -21,15 +21,18 @@ const max_health: int = 50
 var health: int
 var is_alive: bool = true
 
-var speed: float = 50
+@export var speed: float = 50
 var knockback_velocity: Vector2 = Vector2.ZERO
 var knockback_decay: float = 100.0 # How quickly the knockback slows
 var last_hit_source: Vector2
 
 var player = null
+var previous_player_distance = 0
+var strike_distance = 40
 
 func _on_ready():
 	health = max_health
+	speed = 50
 	stop_moving = false
 	while not health_bar.ready:
 		get_tree().process_frame
@@ -43,19 +46,33 @@ func _process(delta):
 	
 	_handle_knockback(delta)
 	
+	var distance_from_player = global_position.distance_to(player.active_character.global_position)
+	
 	if stop_moving == false and is_instance_valid(player):
 		_handle_animations()
-		
-		if global_position.distance_to(player.active_character.global_position) > 50:
+		if distance_from_player >= 100:
 			position_to_attack = Vector2(player.active_character.global_position.x + random_distance_from_player, player.active_character.global_position.y + random_distance_from_player)
+		elif distance_from_player < strike_distance and previous_player_distance > strike_distance:
+			if round(randf_range(0, 1)) == 1:
+				stop_moving = true
+				$AnimationPlayer.play("strike")
+				velocity = Vector2.ZERO
+			else:
+				position_to_attack = player.active_character.global_position
 		else:
 			position_to_attack = player.active_character.global_position
-		direction = global_position.direction_to(position_to_attack)
-		velocity = direction * speed
 		
-		move_and_collide(velocity * delta)
+		if not stop_moving:
+			direction = global_position.direction_to(position_to_attack)
+			velocity = direction * speed
+			
+		previous_player_distance = distance_from_player
+	elif $AnimationPlayer.current_animation == "strike":
+		pass
 	else:
 		velocity = Vector2.ZERO
+	
+	move_and_collide(velocity * delta)
 	
 	if velocity.y >= 0:
 		health_bar.global_position = global_position + Vector2(-12, -16)
@@ -65,13 +82,21 @@ func _process(delta):
 func _handle_animations():
 	if velocity != Vector2.ZERO:
 		sprite.play("slither")
-		rotation = direction.angle() - PI/2
+		_handle_rotation()
+
+func _handle_rotation():
+	rotation = direction.angle() - PI/2
 
 func _handle_knockback(delta: float): # Decays knockback speed each frame
 	if knockback_velocity.length() > 10.0:
 		var motion = knockback_velocity * delta
 		move_and_collide(motion)
 		knockback_velocity = knockback_velocity.move_toward(Vector2.ZERO, knockback_decay * delta)
+
+func _handle_strike_lunge():
+	direction = global_position.direction_to(player.active_character.global_position)
+	_handle_rotation()
+	velocity = direction * speed * 3
 
 func _set_health(value: int):
 	health = clamp(value, 0, max_health)
@@ -85,6 +110,8 @@ func take_damage(damage: int, source_position: Vector2): # This needs to get rep
 	if health > 0:
 		last_hit_source = source_position
 		flash_anim.play("flash")
+		$AnimationPlayer.stop()
+		stop_moving = false
 		var new_health = health - damage
 		_set_health(new_health)
 	
@@ -105,6 +132,8 @@ func _die():
 func _on_animation_finished(anim_name: StringName):
 	if anim_name == "die":
 		get_parent().queue_free()
+	elif anim_name == "strike":
+		stop_moving = false
 
 func _on_hurtbox_area_entered(area: Area2D) -> void: # Currently Damages enemy (UPDATE TO GLOBAL FUNCTIONS WHEN READY)
 	if hurtbox.monitoring:

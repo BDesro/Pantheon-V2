@@ -296,6 +296,18 @@ tracks/1/keys = {
 "update": 1,
 "values": [0]
 }
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Hurtbox/HurtboxArea:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(-1, 7)]
+}
 
 [sub_resource type="Animation" id="Animation_xhlo2"]
 resource_name = "die"
@@ -397,6 +409,59 @@ tracks/6/keys = {
 
 [sub_resource type="Animation" id="Animation_nexp4"]
 resource_name = "strike"
+length = 0.8
+tracks/0/type = "method"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AnimatedSprite2D")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [&"strike"],
+"method": &"play"
+}]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("AnimatedSprite2D:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.25, 0.5, 0.6, 0.75),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3, 4]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Hurtbox/HurtboxArea:position")
+tracks/2/interp = 0
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.5, 0.6, 0.75, 0.8),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 1,
+"values": [Vector2(0, 4), Vector2(-1, 7), Vector2(0, 8), Vector2(-1, 6), Vector2(0, 4)]
+}
+tracks/3/type = "method"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath(".")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0.5),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"_handle_strike_lunge"
+}]
+}
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_a35dn"]
 _data = {
@@ -420,6 +485,7 @@ collision_layer = 5
 collision_mask = 7
 motion_mode = 1
 script = ExtResource("1_8bq8f")
+speed = 0.0
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="EnemySnake"]
 material = SubResource("ShaderMaterial_2pab6")
@@ -448,7 +514,7 @@ monitorable = false
 priority = 1
 
 [node name="HurtboxArea" type="CollisionShape2D" parent="EnemySnake/Hurtbox"]
-position = Vector2(0, 4)
+position = Vector2(-1, 7)
 rotation = 1.5708
 shape = SubResource("CapsuleShape2D_xhlo2")
 debug_color = Color(0.771239, 0.0593387, 0.203927, 0.42)
