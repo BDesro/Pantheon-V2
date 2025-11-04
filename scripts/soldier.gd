@@ -22,7 +22,7 @@ var shield_health: float = 50
 var speed: float = 100
 
 # Damage Variables
-var spear_thrust_dmg: int = 30
+var spear_thrust_dmg: int = 20
 
 # Default Score Threshold
 @export var ascension_threshold = 100

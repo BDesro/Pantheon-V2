@@ -19,7 +19,7 @@ extends CharacterBody2D
 @export var max_health: int = 225
 @export var health_regen_per_sec: int = 4
 @export var speed: float = 125.0
-@export var sword_dmg = 50
+@export var sword_dmg = 40
 
 var last_sword: StringName = "sword1"
 
