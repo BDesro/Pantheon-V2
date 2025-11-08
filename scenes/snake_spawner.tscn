@@ -1,10 +1,19 @@
-[gd_scene load_steps=3 format=3 uid="uid://bykflutfldv1h"]
+[gd_scene load_steps=4 format=3 uid="uid://bykflutfldv1h"]
 
 [ext_resource type="Script" uid="uid://dhu2aqticetid" path="res://scripts/snake_spawner.gd" id="1_0tmwk"]
 [ext_resource type="Texture2D" uid="uid://b10rtvhiocosu" path="res://assets/Pantheon_Spawner.png" id="2_g4s67"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_g4s67"]
+radius = 21.0238
 
 [node name="SnakeSpawner" type="Node2D"]
 script = ExtResource("1_0tmwk")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture = ExtResource("2_g4s67")
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+collision_layer = 128
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+shape = SubResource("CircleShape2D_g4s67")

@@ -96,7 +96,7 @@ func _handle_knockback(delta: float): # Decays knockback speed each frame
 func _handle_strike_lunge():
 	direction = global_position.direction_to(player.active_character.global_position)
 	_handle_rotation()
-	velocity = direction * speed * 3
+	velocity = direction * speed * 5
 
 func _set_health(value: int):
 	health = clamp(value, 0, max_health)

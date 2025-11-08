@@ -1,10 +1,10 @@
 extends Node
 
 @export var spawners: Array[NodePath]   # assign Spawner nodes in the inspector
-@export var base_enemy_count := 3       # starting enemies
+@export var base_enemy_count := 5       # starting enemies
 @export var scaling_factor := 1.5       # growth per wave
 @export var base_max_delay := 3.0       # max random delay at wave 1
-@export var delay_reduction := 0.2      # how much to reduce per wave (clamped)
+@export var delay_reduction := 0.3      # how much to reduce per wave (clamped)
 
 var wave_number := 0
 var enemies_alive := 0
