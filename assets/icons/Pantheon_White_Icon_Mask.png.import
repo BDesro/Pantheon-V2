@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cnruh4vbp0h50"
-path="res://.godot/imported/Pantheon_Logo.svg-7a8734a935f59569ab5676b3204d952b.ctex"
+uid="uid://dcxo80284aig1"
+path="res://.godot/imported/Pantheon_White_Icon_Mask.png-128b3060bb4e2d740d208acd3858d472.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/Pantheon_Logo.svg"
-dest_files=["res://.godot/imported/Pantheon_Logo.svg-7a8734a935f59569ab5676b3204d952b.ctex"]
+source_file="res://assets/icons/Pantheon_White_Icon_Mask.png"
+dest_files=["res://.godot/imported/Pantheon_White_Icon_Mask.png-128b3060bb4e2d740d208acd3858d472.ctex"]
 
 [params]
 
@@ -32,6 +32,3 @@ process/hdr_as_srgb=false
 process/hdr_clamp_exposure=false
 process/size_limit=0
 detect_3d/compress_to=1
-svg/scale=1.0
-editor/scale_with_editor_scale=false
-editor/convert_colors_with_editor_theme=false

@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://c2to8q1xfo6uv"
-path="res://.godot/imported/PantheonChatGPTIcon-export.svg-629ef1df15a14a27ae843363dc2d3ed5.ctex"
+uid="uid://cnruh4vbp0h50"
+path="res://.godot/imported/Pantheon_Logo.svg-9c13f3d93dc623d7f3fa438e944dbab8.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/PantheonChatGPTIcon-export.svg"
-dest_files=["res://.godot/imported/PantheonChatGPTIcon-export.svg-629ef1df15a14a27ae843363dc2d3ed5.ctex"]
+source_file="res://assets/icons/Pantheon_Logo.svg"
+dest_files=["res://.godot/imported/Pantheon_Logo.svg-9c13f3d93dc623d7f3fa438e944dbab8.ctex"]
 
 [params]
 

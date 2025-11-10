@@ -976,6 +976,7 @@ one_shot = true
 
 [connection signal="ready" from="active_manager" to="active_manager" method="_on_ready"]
 [connection signal="area_entered" from="active_manager/soldier/AnimatedSprite2D/SpearHit" to="active_manager/soldier" method="_on_spear_hit_area_entered"]
+[connection signal="ready" from="active_manager/Adept" to="active_manager/Adept" method="_on_ready"]
 [connection signal="area_entered" from="active_manager/Adept/AnimatedSprite2D/Sword1Hit" to="active_manager/Adept" method="_on_sword_1_hit_area_entered"]
 [connection signal="area_entered" from="active_manager/Adept/AnimatedSprite2D/Sword2Hit" to="active_manager/Adept" method="_on_sword_2_hit_area_entered"]
 [connection signal="animation_finished" from="active_manager/Adept/AnimationPlayer" to="active_manager/Adept" method="_on_anim_player_animation_finished"]

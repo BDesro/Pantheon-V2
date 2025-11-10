@@ -1,7 +1,7 @@
 [gd_scene load_steps=5 format=3 uid="uid://cftl3vk1cb8ic"]
 
 [ext_resource type="Script" uid="uid://cwo7i6q42w5nu" path="res://scripts/loading_screen.gd" id="1_5phy8"]
-[ext_resource type="Texture2D" uid="uid://cnruh4vbp0h50" path="res://assets/Pantheon_Logo.svg" id="1_ku3bi"]
+[ext_resource type="Texture2D" uid="uid://cnruh4vbp0h50" path="res://assets/icons/Pantheon_Logo.svg" id="1_ku3bi"]
 [ext_resource type="Texture2D" uid="uid://b12ifbqmkjnrt" path="res://assets/loading_textures/Pantheon_Loading_Back.svg" id="2_5phy8"]
 [ext_resource type="Texture2D" uid="uid://cwcjigkem8xqc" path="res://assets/loading_textures/Pantheon_Loading_Fore.svg" id="3_djmwj"]
 

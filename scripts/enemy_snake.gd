@@ -29,6 +29,7 @@ var last_hit_source: Vector2
 var player = null
 var previous_player_distance = 0
 var strike_distance = 40
+var strike_speed = 5
 
 func _on_ready():
 	health = max_health
@@ -46,15 +47,17 @@ func _process(delta):
 	
 	_handle_knockback(delta)
 	
-	var distance_from_player = global_position.distance_to(player.active_character.global_position)
-	
 	if stop_moving == false and is_instance_valid(player):
+		var distance_from_player = global_position.distance_to(player.active_character.global_position)
+		
 		_handle_animations()
+		
 		if distance_from_player >= 100:
 			position_to_attack = Vector2(player.active_character.global_position.x + random_distance_from_player, player.active_character.global_position.y + random_distance_from_player)
 		elif distance_from_player < strike_distance and previous_player_distance > strike_distance:
 			if round(randf_range(0, 1)) == 1:
 				stop_moving = true
+				$AnimationPlayer.speed_scale += (strike_speed * 0.20)
 				$AnimationPlayer.play("strike")
 				velocity = Vector2.ZERO
 			else:
@@ -96,7 +99,7 @@ func _handle_knockback(delta: float): # Decays knockback speed each frame
 func _handle_strike_lunge():
 	direction = global_position.direction_to(player.active_character.global_position)
 	_handle_rotation()
-	velocity = direction * speed * 5
+	velocity = direction * speed * strike_speed
 
 func _set_health(value: int):
 	health = clamp(value, 0, max_health)
@@ -134,6 +137,7 @@ func _on_animation_finished(anim_name: StringName):
 		get_parent().queue_free()
 	elif anim_name == "strike":
 		stop_moving = false
+		$AnimationPlayer.speed_scale = 1
 
 func _on_hurtbox_area_entered(area: Area2D) -> void: # Currently Damages enemy (UPDATE TO GLOBAL FUNCTIONS WHEN READY)
 	if hurtbox.monitoring:

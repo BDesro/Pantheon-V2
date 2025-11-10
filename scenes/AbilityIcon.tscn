@@ -1,0 +1,80 @@
+[gd_scene load_steps=8 format=3 uid="uid://d20ekhhhhhx1t"]
+
+[ext_resource type="FontFile" uid="uid://obg2py2apxig" path="res://assets/fonts/Orange Kid.otf" id="1_k2bnl"]
+[ext_resource type="Script" uid="uid://dmp7dwawvoes7" path="res://scripts/ability_icon.gd" id="1_nwlho"]
+[ext_resource type="Texture2D" uid="uid://bytgqalxlhpv6" path="res://assets/icons/Pantheon_Soldier_Spear_Icon.png" id="1_rrfua"]
+[ext_resource type="Texture2D" uid="uid://ca3dgmpbhlsnm" path="res://assets/icons/Pantheon_Ability_Placeholder_Icon.png" id="2_nwlho"]
+[ext_resource type="Shader" uid="uid://cggk1xlsbr4nc" path="res://scripts/icon_gray_cd.gdshader" id="4_n6uya"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_rrfua"]
+bg_color = Color(0.6, 0.6, 0.6, 0)
+border_width_left = 5
+border_width_top = 5
+border_width_right = 5
+border_width_bottom = 5
+border_color = Color(0, 0, 0, 1)
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_r42qa"]
+shader = ExtResource("4_n6uya")
+shader_parameter/cooldown_percent = 0.0
+
+[node name="AbilityIcon" type="Control"]
+layout_mode = 3
+anchor_left = -0.0291667
+anchor_top = -0.0518519
+anchor_right = 0.0291667
+anchor_bottom = 0.0518519
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+script = ExtResource("1_nwlho")
+icon_texture = ExtResource("1_rrfua")
+mapped_key = "LMB"
+metadata/_edit_use_anchors_ = true
+
+[node name="PanelContainer" type="PanelContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_rrfua")
+
+[node name="IconBase" type="TextureRect" parent="PanelContainer"]
+layout_mode = 2
+texture = ExtResource("2_nwlho")
+expand_mode = 1
+
+[node name="IconGray" type="TextureRect" parent="PanelContainer"]
+modulate = Color(0.187176, 0.187176, 0.187176, 0.9)
+show_behind_parent = true
+z_index = 1
+material = SubResource("ShaderMaterial_r42qa")
+layout_mode = 2
+texture = ExtResource("2_nwlho")
+
+[node name="Highlight" type="ColorRect" parent="PanelContainer"]
+z_index = 2
+layout_mode = 2
+color = Color(1, 1, 1, 0)
+
+[node name="NameLabel" type="Label" parent="."]
+layout_mode = 0
+anchor_left = 0.0714286
+anchor_top = 1.0
+anchor_right = 0.928571
+anchor_bottom = 1.20536
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 10
+theme_override_fonts/font = ExtResource("1_k2bnl")
+theme_override_font_sizes/font_size = 50
+text = "KEY"
+horizontal_alignment = 1
+vertical_alignment = 1
+metadata/_edit_use_anchors_ = true
