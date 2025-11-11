@@ -19,6 +19,7 @@ corner_radius_bottom_right = 5
 corner_radius_bottom_left = 5
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_r42qa"]
+resource_local_to_scene = true
 shader = ExtResource("4_n6uya")
 shader_parameter/cooldown_percent = 0.0
 
@@ -69,8 +70,7 @@ anchors_preset = -1
 anchor_left = 0.0714286
 anchor_top = 1.0
 anchor_right = 0.928571
-anchor_bottom = 1.54464
-offset_bottom = -37.9996
+anchor_bottom = 1.57143
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 theme_override_constants/outline_size = 10
 theme_override_fonts/font = ExtResource("1_k2bnl")

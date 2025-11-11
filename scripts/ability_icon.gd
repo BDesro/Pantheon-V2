@@ -25,7 +25,7 @@ func set_icon_info(cooldown: float, image: Texture2D, key: String):
 	mapped_key = key
 
 func _process(delta: float):
-	if Input.is_action_just_pressed("lmb"):
+	if Input.is_action_just_pressed(mapped_key):
 		trigger_ability()
 	
 	if cooldown_remaining > 0:

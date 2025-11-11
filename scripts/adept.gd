@@ -31,6 +31,27 @@ var input_direction: Vector2
 # Default Score Threshold
 @export var ascension_threshold = 5000
 
+@export var abilities = {
+	0: {
+		"name": "Sword Slash",
+		"cooldown": 0.0,
+		"image_path": "res://assets/icons/Pantheon_Adept_Sword_Icon.png",
+		"mapped_key": "lmb"
+		},
+	1: {
+		"name": "Fireball",
+		"cooldown": fireball_cd,
+		"image_path": "res://assets/icons/Pantheon_Adept_Fireball_Icon.png",
+		"mapped_key": "rmb"
+		},
+	2: {
+		"name": "Raise Shield",
+		"cooldown": dash_cd,
+		"image_path": "res://assets/icons/Pantheon_Adept_Dash_Icon.png",
+		"mapped_key": "space"
+	}
+}
+
 func _on_ready():
 	dash_cd_timer.wait_time = dash_cd
 	fireball_cd_timer.wait_time = fireball_cd
