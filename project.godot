@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="Pantheon v2"
-config/version="0.8.0"
+config/version="0.8.3"
 run/main_scene="uid://bdmu5xc41yqp0"
 config/features=PackedStringArray("4.4", "Forward Plus")
 config/icon="uid://cnruh4vbp0h50"
