@@ -57,7 +57,7 @@ func _player_movement(_delta):
 	_movement_animations()
 	move_and_slide()
 	
-	if Input.is_action_just_pressed("right_click"):
+	if Input.is_action_just_pressed("rmb"):
 		if fireball_cd_timer.is_stopped():
 			anim_player.stop()
 			anim_player.play("fireball")
@@ -69,7 +69,7 @@ func _player_movement(_delta):
 			dash_cd_timer.start()
 		
 	elif not anim_player.is_playing():
-		if Input.is_action_just_pressed("left_click"):
+		if Input.is_action_just_pressed("lmb"):
 			anim_player.stop()
 			anim_player.play("sword1")
 
@@ -87,7 +87,7 @@ func _on_anim_player_animation_finished(anim_name: StringName) -> void:
 		if anim_name != "dash":
 			last_sword = anim_name
 		
-		if Input.is_action_pressed("left_click"):
+		if Input.is_action_pressed("lmb"):
 			if last_sword == "sword1":
 				anim_player.play("sword2")
 			elif last_sword == "sword2":

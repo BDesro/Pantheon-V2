@@ -9,6 +9,7 @@ var player_health_bar: ProgressBar = null
 var score_label: Label = null
 var wave_label: Label = null
 var num_enemies_label: Label = null
+var ability_hotbar: Control = null
 
 var cur_character_id: int = 1
 var unit_name = "Soldier"
@@ -38,6 +39,9 @@ func set_character_info(char_id: int):
 		player_health = characters[char_id]["max_health"]
 		score_threshold = characters[char_id]["threshold"]
 		elim_progress = 0
+		
+		if ability_hotbar:
+			ability_hotbar.populate_abilities(global_player_instance.active_character)
 
 func increase_player_score(amount: int):
 	if global_player_instance:

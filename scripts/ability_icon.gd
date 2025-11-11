@@ -1,4 +1,5 @@
 extends Control
+class_name AbilityIcon
 
 @export var cooldown_duration: float = 3.0
 @export var icon_texture: Texture2D
@@ -24,7 +25,7 @@ func set_icon_info(cooldown: float, image: Texture2D, key: String):
 	mapped_key = key
 
 func _process(delta: float):
-	if Input.is_action_just_pressed("left_click"):
+	if Input.is_action_just_pressed("lmb"):
 		trigger_ability()
 	
 	if cooldown_remaining > 0:

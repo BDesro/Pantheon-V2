@@ -10,7 +10,7 @@
 [ext_resource type="Script" uid="uid://wc3k4v7id8uh" path="res://scripts/wave_label.gd" id="7_q5onr"]
 [ext_resource type="Script" uid="uid://divg5oweyi6wo" path="res://scripts/num_enemies_label.gd" id="8_jhx03"]
 [ext_resource type="Script" uid="uid://h2tx5yvtfb28" path="res://scripts/pause_menu.gd" id="9_7r4gi"]
-[ext_resource type="PackedScene" uid="uid://d20ekhhhhhx1t" path="res://scenes/AbilityIcon.tscn" id="9_o8fc1"]
+[ext_resource type="Script" uid="uid://d4dvwe3srwhi3" path="res://scripts/ability_hot_bar.gd" id="9_o8fc1"]
 [ext_resource type="PackedScene" uid="uid://djyri8nicqsrg" path="res://scenes/pause_menu.tscn" id="9_w7kh3"]
 [ext_resource type="PackedScene" uid="uid://bm1vw6a6my02m" path="res://scenes/wave_spawner.tscn" id="10_w7kh3"]
 [ext_resource type="PackedScene" uid="uid://c2ual51w4orrs" path="res://scenes/game_over.tscn" id="11_e3hyu"]
@@ -174,11 +174,14 @@ theme_override_font_sizes/font_size = 50
 text = "Enemies Remaining: "
 script = ExtResource("8_jhx03")
 
-[node name="Control2" parent="GameUI" instance=ExtResource("9_o8fc1")]
-offset_left = 1464.0
-offset_top = 944.0
-offset_right = 1464.0
-offset_bottom = 944.0
+[node name="AbilityHotBar" type="Control" parent="GameUI/Control"]
+layout_mode = 1
+anchor_left = 0.7
+anchor_top = 0.77037
+anchor_right = 0.9875
+anchor_bottom = 0.977778
+script = ExtResource("9_o8fc1")
+metadata/_edit_use_anchors_ = true
 
 [node name="PauseMenu" parent="." instance=ExtResource("9_w7kh3")]
 script = ExtResource("9_7r4gi")

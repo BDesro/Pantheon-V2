@@ -7,6 +7,7 @@ signal pause_pressed
 @onready var wave_label = $GameUI/Control/WaveLabel
 @onready var num_enemies_label = $GameUI/Control/NumEnemiesLabel
 @onready var game_over_scr = $GameOver
+@onready var ability_hotbar = $GameUI/Control/AbilityHotBar
 
 var ui_ready: bool = false
 
@@ -20,6 +21,7 @@ func _on_ready():
 	GlobalData.score_label = score_label
 	GlobalData.wave_label = wave_label
 	GlobalData.num_enemies_label = num_enemies_label
+	GlobalData.ability_hotbar = ability_hotbar
 
 func is_ui_ready():
 	var is_ready = false
@@ -38,7 +40,6 @@ func game_over():
 
 func _exit_tree():
 	GlobalData.node_creation_parent = null
-
 
 func _on_pause_menu_resumed() -> void:
 	$GameUI.show()

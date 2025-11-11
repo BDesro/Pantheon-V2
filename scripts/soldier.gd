@@ -21,6 +21,21 @@ var shield_health: float = 50
 
 var speed: float = 100
 
+@export var abilities = {
+	0: {
+		"name": "Spear Strike",
+		"cooldown": 0.0,
+		"image_path": "res://assets/icons/Pantheon_Soldier_Spear_Icon.png",
+		"mapped_key": "lmb"
+		},
+	1: {
+		"name": "Raise Shield",
+		"cooldown": 0.0,
+		"image_path": "res://assets/icons/Pantheon_Soldier_Shield_Icon.png",
+		"mapped_key": "rmb"
+	}
+}
+
 # Damage Variables
 var spear_thrust_dmg: int = 20
 
@@ -54,7 +69,7 @@ func _player_movement(_delta):
 	_movement_animations()
 	move_and_slide()
 	
-	if Input.is_action_pressed("right_click"):
+	if Input.is_action_pressed("rmb"):
 		anim_player.play("shield_walk")
 		shield_hitbox.disabled = false
 	else:
@@ -64,7 +79,7 @@ func _player_movement(_delta):
 				shield_hitbox.disabled = true
 			return
 		else:
-			if Input.is_action_just_pressed("left_click"):
+			if Input.is_action_just_pressed("lmb"):
 				anim_player.stop()
 				anim_player.play("spear_strike")
 	
