@@ -22,7 +22,7 @@ var characters = {
 	0: {
 		"name": "Soldier",
 		"max_health": 100,
-		"threshold": 450
+		"threshold": 10
 	},
 	1: {
 		"name": "Adept",

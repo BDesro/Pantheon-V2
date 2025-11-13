@@ -3,6 +3,7 @@
 [ext_resource type="Script" uid="uid://b5t4dptgi6kdx" path="res://scripts/wave_spawner.gd" id="1_ab10t"]
 
 [node name="WaveSpawner" type="Node"]
+process_mode = 1
 script = ExtResource("1_ab10t")
 
 [connection signal="ready" from="." to="." method="_on_ready"]

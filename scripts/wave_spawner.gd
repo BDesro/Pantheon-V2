@@ -35,7 +35,7 @@ func spawn_wave(count: int) -> void:
 		var max_delay = max(0.5, base_max_delay - (wave_number - 1) * delay_reduction)
 		var delay = randf_range(0.0, max_delay)
 
-		await get_tree().create_timer(delay).timeout
+		await get_tree().create_timer(delay, false).timeout
 
 func on_enemy_died():
 	enemies_alive -= 1

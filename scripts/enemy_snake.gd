@@ -10,6 +10,7 @@ signal enemy_died
 @onready var hurtbox = $Hurtbox
 @onready var cd_timer = get_parent().get_node("HurtboxCDTimer")
 @onready var flash_anim = $FlashAnimation
+var popup: PackedScene = preload("res://scenes/score_popup.tscn")
 
 var rng = RandomNumberGenerator.new()
 var random_distance_from_player = randf_range(0, 30)
@@ -129,6 +130,10 @@ func apply_descension_knockback(): # Registers a knockback from a hit
 	knockback_velocity = knockback_direction * strength
 
 func _die():
+	var score_popup = popup.instantiate()
+	score_popup.global_position = global_position
+	GlobalData.node_creation_parent.add_child(score_popup)
+	
 	$AnimationPlayer.play("die")
 	enemy_died.emit()
 
