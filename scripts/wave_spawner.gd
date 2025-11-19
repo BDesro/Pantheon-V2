@@ -19,7 +19,9 @@ func start_next_wave():
 	
 	GlobalData.wave_label.update_wave(wave_number)
 	
+	# This equation determines the number of enemies that spawn in each wave
 	enemies_alive = int(base_enemy_count * pow(scaling_factor, wave_number - 1))
+	
 	print("Starting Wave ", wave_number, " with ", enemies_alive, " enemies")
 	GlobalData.num_enemies_label.update_num_enemies(enemies_alive)
 	spawn_wave(enemies_alive)

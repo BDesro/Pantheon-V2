@@ -1,7 +1,7 @@
 extends Node
 
 signal player_died
-signal player_descended
+signal player_state_changed
 
 @onready var health_regen_timer: Timer = $"../HealthRegenTimer"
 @onready var time_before_regen: Timer = $"../TimeBeforeRegen"
@@ -84,11 +84,12 @@ func _process(_delta):
 	camera.global_position = active_character.global_position
 
 func ascend(): # Increments the active character id to ascend to the next player tier
+	player_state_changed.emit()
 	active += 1
 	set_active_character(characters[active])
 
 func descend():
-	player_descended.emit()
+	player_state_changed.emit()
 	active -= 1
 	
 	var cur_score = GlobalData.player_score
