@@ -9,7 +9,7 @@
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_fjrip"]
 shader = ExtResource("3_tuyoq")
-shader_parameter/flash_color = Color(1, 1, 1, 1)
+shader_parameter/flash_color = Color(1, 0.917647, 0.901961, 1)
 shader_parameter/flash_value = 0.0
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_dqkch"]
@@ -365,7 +365,7 @@ height = 20.0
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_tuyoq"]
 shader = ExtResource("3_tuyoq")
-shader_parameter/flash_color = Color(1, 1, 1, 1)
+shader_parameter/flash_color = Color(0.999999, 0.918035, 0.903409, 1)
 shader_parameter/flash_value = 0.0
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_wqfne"]
