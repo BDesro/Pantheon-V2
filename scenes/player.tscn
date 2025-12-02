@@ -963,7 +963,7 @@ wait_time = 6.0
 one_shot = true
 
 [node name="Camera2D" type="Camera2D" parent="."]
-zoom = Vector2(4, 4)
+zoom = Vector2(6, 6)
 position_smoothing_speed = 10.0
 
 [node name="HealthRegenTimer" type="Timer" parent="."]

@@ -132,7 +132,7 @@ func _exit_tree() -> void:
 
 func _on_health_regen_timer_timeout() -> void:
 	if 0 < health and health < active_character.max_health:
-		heal(ceil(active_character.health_regen_per_sec / 2))
+		heal(ceil(active_character.health_regen_per_sec))
 	else:
 		health_regen_timer.stop()
 		health_regen_timer.one_shot = true
