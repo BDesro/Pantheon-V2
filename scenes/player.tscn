@@ -1,4 +1,4 @@
-[gd_scene load_steps=86 format=3 uid="uid://da5qaqmpvsa64"]
+[gd_scene load_steps=105 format=3 uid="uid://da5qaqmpvsa64"]
 
 [ext_resource type="Script" uid="uid://dgaf7w4cfqo07" path="res://scenes/active_manager.gd" id="1_g2els"]
 [ext_resource type="Script" uid="uid://ebeqiscyvjll" path="res://scripts/soldier.gd" id="2_dqkch"]
@@ -6,6 +6,7 @@
 [ext_resource type="Shader" uid="uid://cues6u5aeb1jr" path="res://assets/character_fx/hitflash.gdshader" id="3_tuyoq"]
 [ext_resource type="Texture2D" uid="uid://bjxht21ajx5xk" path="res://assets/character_art/Pantheon_Adept.png" id="5_qlg0r"]
 [ext_resource type="Script" uid="uid://l7h7js3am8l1" path="res://scripts/adept.gd" id="5_tuyoq"]
+[ext_resource type="Texture2D" uid="uid://bxunft7ov7dmd" path="res://assets/character_fx/Pantheon_Ascension_Magic.png" id="7_fjrip"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_fjrip"]
 shader = ExtResource("3_tuyoq")
@@ -846,6 +847,211 @@ _data = {
 radius = 5.0
 height = 14.0
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_au7lq"]
+atlas = ExtResource("7_fjrip")
+region = Rect2(0, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_nubpm"]
+atlas = ExtResource("7_fjrip")
+region = Rect2(64, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ua5cf"]
+atlas = ExtResource("7_fjrip")
+region = Rect2(128, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_51ujp"]
+atlas = ExtResource("7_fjrip")
+region = Rect2(192, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_tk41t"]
+atlas = ExtResource("7_fjrip")
+region = Rect2(256, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fuw3a"]
+atlas = ExtResource("7_fjrip")
+region = Rect2(320, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8txt3"]
+atlas = ExtResource("7_fjrip")
+region = Rect2(384, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2w11d"]
+atlas = ExtResource("7_fjrip")
+region = Rect2(448, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_770dr"]
+atlas = ExtResource("7_fjrip")
+region = Rect2(512, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8f1cb"]
+atlas = ExtResource("7_fjrip")
+region = Rect2(576, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vdulj"]
+atlas = ExtResource("7_fjrip")
+region = Rect2(640, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vau08"]
+atlas = ExtResource("7_fjrip")
+region = Rect2(704, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qsb7e"]
+atlas = ExtResource("7_fjrip")
+region = Rect2(768, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qjsmb"]
+atlas = ExtResource("7_fjrip")
+region = Rect2(832, 0, 64, 64)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_mwp2n"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_au7lq")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_nubpm")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ua5cf")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_51ujp")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_tk41t")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fuw3a")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8txt3")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2w11d")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_770dr")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8f1cb")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vdulj")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vau08")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qsb7e")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qjsmb")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_au7lq")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_nubpm")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ua5cf")
+}],
+"loop": false,
+"name": &"ascension",
+"speed": 9.0
+}]
+
+[sub_resource type="Animation" id="Animation_0yhus"]
+resource_name = "ascension"
+length = 1.8889
+step = 0.111111
+tracks/0/type = "method"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("active_manager/AscensionMagic")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [&"ascension"],
+"method": &"play"
+}]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("active_manager/AscensionMagic:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 1.8889),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("active_manager/AscensionMagic:frame")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.111111, 0.222222, 0.333333, 0.444444, 0.555556, 0.666667, 0.777778, 0.888889, 1, 1.11111, 1.22222, 1.33333, 1.44444, 1.55556, 1.66667, 1.77778),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16]
+}
+tracks/3/type = "method"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("active_manager")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0.888889),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"ascend"
+}]
+}
+
+[sub_resource type="Animation" id="Animation_jlll7"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("active_manager/AscensionMagic:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("active_manager/AscensionMagic:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_qk6i7"]
+_data = {
+&"RESET": SubResource("Animation_jlll7"),
+&"ascension": SubResource("Animation_0yhus")
+}
+
 [node name="player" type="Node2D"]
 z_index = 4
 
@@ -962,6 +1168,17 @@ one_shot = true
 wait_time = 6.0
 one_shot = true
 
+[node name="AscensionMagic" type="AnimatedSprite2D" parent="active_manager"]
+visible = false
+sprite_frames = SubResource("SpriteFrames_mwp2n")
+animation = &"ascension"
+
+[node name="AscensionPlayer" type="AnimationPlayer" parent="active_manager"]
+root_node = NodePath("../..")
+libraries = {
+&"": SubResource("AnimationLibrary_qk6i7")
+}
+
 [node name="Camera2D" type="Camera2D" parent="."]
 zoom = Vector2(6, 6)
 position_smoothing_speed = 10.0
@@ -980,5 +1197,6 @@ one_shot = true
 [connection signal="area_entered" from="active_manager/Adept/AnimatedSprite2D/Sword1Hit" to="active_manager/Adept" method="_on_sword_1_hit_area_entered"]
 [connection signal="area_entered" from="active_manager/Adept/AnimatedSprite2D/Sword2Hit" to="active_manager/Adept" method="_on_sword_2_hit_area_entered"]
 [connection signal="animation_finished" from="active_manager/Adept/AnimationPlayer" to="active_manager/Adept" method="_on_anim_player_animation_finished"]
+[connection signal="animation_finished" from="active_manager/AscensionMagic" to="active_manager" method="_on_ascension_animation_finished"]
 [connection signal="timeout" from="HealthRegenTimer" to="active_manager" method="_on_health_regen_timer_timeout"]
 [connection signal="timeout" from="TimeBeforeRegen" to="active_manager" method="_on_time_before_regen_timeout"]

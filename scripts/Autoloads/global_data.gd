@@ -49,6 +49,6 @@ func increase_player_score(amount: int):
 		elim_progress += amount
 		
 		if player_score >= score_threshold and characters.has(cur_character_id + 1):
-			global_player_instance.ascend()
+			global_player_instance.ascension_player.play("ascension")
 		
 		score_label.text = "Score: " + str(player_score)

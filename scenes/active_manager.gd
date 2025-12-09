@@ -5,6 +5,7 @@ signal player_state_changed
 
 @onready var health_regen_timer: Timer = $"../HealthRegenTimer"
 @onready var time_before_regen: Timer = $"../TimeBeforeRegen"
+@onready var ascension_player: AnimationPlayer = $AscensionPlayer
 
 @onready var active: int = 0
 @onready var camera: Camera2D = get_parent().get_node("Camera2D")
@@ -82,6 +83,7 @@ func _setup_camera():
 
 func _process(_delta):
 	camera.global_position = active_character.global_position
+	$AscensionMagic.global_position = active_character.global_position
 
 func ascend(): # Increments the active character id to ascend to the next player tier
 	player_state_changed.emit()
@@ -140,3 +142,7 @@ func _on_health_regen_timer_timeout() -> void:
 func _on_time_before_regen_timeout() -> void:
 	health_regen_timer.one_shot = false
 	health_regen_timer.start()
+
+
+func _on_ascension_animation_finished() -> void:
+	$AscensionMagic.hide()
