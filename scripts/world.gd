@@ -13,6 +13,7 @@ var ui_ready: bool = false
 
 func _ready():
 	GlobalData.node_creation_parent = self
+	connect("ready", Callable(GlobalData, "on_world_ready"))
 
 func _on_ready():
 	while not is_ui_ready():

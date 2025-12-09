@@ -22,7 +22,7 @@ var characters = {
 	0: {
 		"name": "Soldier",
 		"max_health": 100,
-		"threshold": 450
+		"threshold": 50
 	},
 	1: {
 		"name": "Adept",
@@ -32,7 +32,7 @@ var characters = {
 }
 
 func set_character_info(char_id: int):
-	if characters[char_id] and char_id != cur_character_id:
+	if characters[char_id]:
 		cur_character_id = char_id
 		unit_name = characters[char_id]["name"]
 		unit_name_label.text = unit_name
@@ -52,3 +52,7 @@ func increase_player_score(amount: int):
 			global_player_instance.ascension_player.play("ascension")
 		
 		score_label.text = "Score: " + str(player_score)
+
+func on_world_ready():
+	player_score = 0
+	
